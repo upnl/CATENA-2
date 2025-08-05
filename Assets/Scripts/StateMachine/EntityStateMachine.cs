@@ -13,6 +13,7 @@ namespace StateMachine
         public EntityAirHitState EntityAirHitState { get; private set; }
         public EntityStunState EntityStunState { get; private set; }
         public EntityDodgeState EntityDodgeState { get; private set; }
+        public EntityNormalAttackState EntityNormalAttackState { get; protected set; }
         
 
         public EntityStateMachine(EntityController entityController)

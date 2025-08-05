@@ -5,36 +5,38 @@ using UnityEngine.InputSystem;
 
 public class EntityNormalAttackState : EntityState
 {
-    private NormalAttackStateMachine _normalAttackStateMachine;
+    protected NormalAttackStateMachine NormalAttackStateMachine;
     
     public EntityNormalAttackState(EntityStateMachine entityStateMachine) : base(entityStateMachine)
     {
-        _normalAttackStateMachine = new NormalAttackStateMachine(stateMachine.EntityController, stateMachine);
+        NormalAttackStateMachine = new NormalAttackStateMachine(stateMachine.EntityController, stateMachine);
     }
     
     public override void Enter()
     {
-        Debug.Log("EntityNormalAttackState: Enter");
+        base.Enter();
         
-        _normalAttackStateMachine.EnterNormalAttackState();
+        NormalAttackStateMachine.EnterNormalAttackState();
     }
 
     public override void Update()
     {
-        Debug.Log("EntityNormalAttackState: Update");
+        base.Update();
         
-        _normalAttackStateMachine.Update();
+        NormalAttackStateMachine.Update();
     }
 
     public override void PhysicsUpdate()
     {
-        Debug.Log("EntityNormalAttackState: PhysicsUpdate");
+        base.PhysicsUpdate();
         
-        _normalAttackStateMachine.PhysicsUpdate();
+        NormalAttackStateMachine.PhysicsUpdate();
     }
 
     public override void Exit()
     {
-        Debug.Log("EntityNormalAttackState: Exit");
+        base.Exit();
+        
+        NormalAttackStateMachine.Exit();
     }
 }

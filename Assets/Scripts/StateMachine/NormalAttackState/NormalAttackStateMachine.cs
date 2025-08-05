@@ -29,7 +29,8 @@ public class NormalAttackStateMachine
 
     public void EnterNormalAttackState()
     {
-        ChangeState(EntryState);
+        _currentState = EntryState;
+        if (_currentState != null) _currentState.Enter();
     }
 
     public void Update()
@@ -40,5 +41,10 @@ public class NormalAttackStateMachine
     public void PhysicsUpdate()
     {
         if (_currentState != null) _currentState.PhysicsUpdate();
+    }
+
+    public void Exit()
+    {
+        _currentState.Exit();
     }
 }

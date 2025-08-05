@@ -13,15 +13,15 @@ public class EntityDodgeState : EntityState
     
     public override void Enter()
     {
-        Debug.Log("EntityDodgeState: Enter");
+        base.Enter();
         
         _timerElapsed = 0f;
     }
 
     public override void Update()
     {
-        Debug.Log("EntityDodgeState: Update");
-
+        base.Update();
+        
         _timerElapsed += Time.deltaTime;
 
         if (_timerElapsed >= _dodgeTimer)
@@ -31,12 +31,12 @@ public class EntityDodgeState : EntityState
     }
 
     public override void PhysicsUpdate()
-    {
-        Debug.Log("EntityDodgeState: PhysicsUpdate");
+    { 
+        base.PhysicsUpdate();
     }
 
     public override void Exit()
     {
-        Debug.Log("EntityDodgeState: Exit");
+        base.Exit();
     }
 }

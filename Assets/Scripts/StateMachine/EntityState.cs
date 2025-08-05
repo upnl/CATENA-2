@@ -13,22 +13,22 @@ public class EntityState : IState
     
     public virtual void Enter()
     {
-        throw new System.NotImplementedException();
+        Debug.Log($"[{GetType().Name}] Enter");
     }
 
     public virtual void Update()
     {
-        throw new System.NotImplementedException();
+        Debug.Log($"[{GetType().Name}] Update");
     }
 
     public virtual void PhysicsUpdate()
     {
-        throw new System.NotImplementedException();
+        Debug.Log($"[{GetType().Name}] PhysicsUpdate");
     }
 
     public virtual void Exit()
     {
-        throw new System.NotImplementedException();
+        Debug.Log($"[{GetType().Name}] Exit");
     }
     
     protected void OnHit(ActionTriggerContext context)

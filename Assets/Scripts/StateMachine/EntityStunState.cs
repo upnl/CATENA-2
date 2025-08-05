@@ -17,12 +17,12 @@ public class EntityStunState : EntityState
     
     public override void Enter()
     {
+        base.Enter();
         
         _context = stateMachine.EntityController.AttackContext;
         
         // knockback 적용
         _rigidbody.AddForce(_context.KnockBack, ForceMode.Impulse);
-        Debug.Log("EntityStunState: Enter and stun time of " + _context.StunTime);
         
         if (_stunTimer < _context.StunTime) _stunTimer = _context.StunTime; 
         
@@ -32,7 +32,7 @@ public class EntityStunState : EntityState
 
     public override void Update()
     {
-        Debug.Log("EntityStunState: Update");
+        base.Update();
         
         _stunTimer -= Time.deltaTime;
 
@@ -44,12 +44,12 @@ public class EntityStunState : EntityState
 
     public override void PhysicsUpdate()
     {
-        Debug.Log("EntityStunState: PhysicsUpdate");
+        base.PhysicsUpdate();
     }
 
     public override void Exit()
     {
-        Debug.Log("EntityStunState: Exit");
+        base.Exit();
         
         stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnHit);
         stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);

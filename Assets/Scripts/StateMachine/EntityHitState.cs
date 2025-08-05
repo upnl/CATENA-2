@@ -17,12 +17,13 @@ public class EntityHitState : EntityState
     
     public override void Enter()
     {
+        base.Enter();
         
         _context = stateMachine.EntityController.AttackContext;
         
         // knockback 적용
         _rigidbody.AddForce(_context.KnockBack, ForceMode.Impulse);
-        Debug.Log("EntityHitState: Enter and get damage of " + _context.Damage);
+
 
         _hitMotionTimer = 0.2f;
         
@@ -32,7 +33,7 @@ public class EntityHitState : EntityState
 
     public override void Update()
     {
-        Debug.Log("EntityHitState: Update");
+        base.Update();
         
         if (_hitMotionTimer > 0) _hitMotionTimer -= Time.deltaTime;
         if (_hitMotionTimer <= 0)
@@ -44,12 +45,12 @@ public class EntityHitState : EntityState
 
     public override void PhysicsUpdate()
     {
-        Debug.Log("EntityHitState: PhysicsUpdate");
+        base.PhysicsUpdate();
     }
 
     public override void Exit()
     {
-        Debug.Log("EntityHitState: Exit");
+        base.Exit();
         
         stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnHit);
         stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);

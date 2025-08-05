@@ -12,7 +12,7 @@ public class PlayerController : EntityController
     {
         base.Awake();
 
-        StateMachine = new PlayerStateMachine(this);
+        StateMachine = new Character1StateMachine(this);
     }
 
     protected override void Update()

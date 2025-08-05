@@ -342,7 +342,7 @@
                 {
                     "name": "",
                     "id": "0c8f8937-8d28-48bb-aecd-14682a3a7679",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",

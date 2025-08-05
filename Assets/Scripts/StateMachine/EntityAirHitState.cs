@@ -18,12 +18,12 @@ public class EntityAirHitState : EntityState
 
     public override void Enter()
     {
+        base.Enter();
 
         _context = stateMachine.EntityController.AttackContext;
 
         // knockback 적용
         _rigidbody.AddForce(_context.KnockBack, ForceMode.Impulse);
-        Debug.Log("EntityAirHitState: Enter and get damage of " + _context.Damage);
         
         stateMachine.EntityController.AddActionTrigger(ActionTrigger.Hit, OnAirHit);
         stateMachine.EntityController.AddActionTrigger(ActionTrigger.AirHit, OnAirHit);
@@ -32,7 +32,7 @@ public class EntityAirHitState : EntityState
 
     public override void Update()
     {
-        Debug.Log("EntityAirHitState: Update");
+        base.Update();
         
         if (stateMachine.EntityController.LandingDetect())
         {
@@ -43,12 +43,12 @@ public class EntityAirHitState : EntityState
 
     public override void PhysicsUpdate()
     {
-        Debug.Log("EntityAirHitState: PhysicsUpdate");
+        base.PhysicsUpdate();
     }
 
     public override void Exit()
     {
-        Debug.Log("EntityAirHitState: Exit");
+        base.Exit();
         
         stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnAirHit);
         stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);
