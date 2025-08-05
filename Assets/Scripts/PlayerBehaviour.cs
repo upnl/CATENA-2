@@ -6,6 +6,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     private PlayerController _playerController;
     private PlayerStateMachine _playerStateMachine;
+    
     private void Awake()
     {
         _playerController = GetComponent<PlayerController>();

@@ -18,7 +18,10 @@ public class EntityMoveState : EntityState
 
     public override void Update()
     {
-        Debug.Log("EntityMoveState: Update, We Moving toward " + stateMachine.LookDirection);
+        Debug.Log("EntityMoveState: Update, We Moving toward " + stateMachine.EntityController.LookDirection);
+        
+        var entityTransform = stateMachine.EntityController.transform;
+        entityTransform.LookAt(entityTransform.position + stateMachine.EntityController.LookDirection);
     }
 
     public override void PhysicsUpdate()

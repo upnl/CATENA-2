@@ -5,11 +5,6 @@ namespace StateMachine
     public class EntityStateMachine
     {
         public IState CurrentState { get; private set; }
-        
-        /// <summary>
-        /// 카메라가 현재 바라보는 방향. 이동과 공격, 스킬 방향에 영향을 미칩니다.
-        /// </summary>
-        public Vector3 LookDirection { get; private set; }
         public EntityController EntityController { get; private set; }
         
         public EntityIdleState EntityIdleState { get; private set; }
