@@ -21,7 +21,7 @@ public class PlayerInputProcessor : MonoBehaviour
         _movementAction = InputSystem.actions.FindAction("Movement");
         _lightAttackAction = InputSystem.actions.FindAction("LightAttack");
         _heavyAttackAction = InputSystem.actions.FindAction("HeavyAttack");
-        _dodgeAction = InputSystem.actions.FindAction("DodgeAttack");
+        _dodgeAction = InputSystem.actions.FindAction("Dodge");
         _skillActions = new InputAction[3];
         for (int i = 0; i < _skillActions.Length; i++)
         {

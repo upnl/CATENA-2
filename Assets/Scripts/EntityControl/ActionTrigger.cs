@@ -12,5 +12,7 @@
         Skill4,
         Skill5,
         Dodge,
+        Hit,
+        AirHit,
     }
 }

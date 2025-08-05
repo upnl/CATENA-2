@@ -14,6 +14,8 @@ public class EntityMoveState : EntityState
         Debug.Log("EntityMoveState: Enter");
         
         stateMachine.EntityController.AddActionTrigger(ActionTrigger.MovementAction, OnMovement);
+        stateMachine.EntityController.AddActionTrigger(ActionTrigger.Hit, OnHit);
+        stateMachine.EntityController.AddActionTrigger(ActionTrigger.AirHit, OnAirHit);
     }
 
     public override void Update()
@@ -33,7 +35,9 @@ public class EntityMoveState : EntityState
     {
         Debug.Log("EntityMoveState: Exit");
         
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.MovementAction, OnMovement);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.MovementAction, OnMovement);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnHit);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);
     }
 
     private void OnMovement(ActionTriggerContext context)

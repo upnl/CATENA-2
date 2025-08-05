@@ -7,5 +7,6 @@ namespace PlayerControl
     {
         public InputActionPhase InputActionPhase;
         public Vector2 MovementInput;
+        public AttackContext AttackContext;
     }
 }

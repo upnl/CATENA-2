@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PlayerControl;
+using UnityEngine;
 using StateMachine;
 
 public class EntityState : IState
@@ -28,5 +29,15 @@ public class EntityState : IState
     public virtual void Exit()
     {
         throw new System.NotImplementedException();
+    }
+    
+    protected void OnHit(ActionTriggerContext context)
+    {
+        stateMachine.ChangeState(stateMachine.EntityHitState);
+    }
+    
+    protected void OnAirHit(ActionTriggerContext context)
+    {
+        stateMachine.ChangeState(stateMachine.EntityAirHitState);
     }
 }

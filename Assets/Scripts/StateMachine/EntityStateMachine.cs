@@ -9,6 +9,11 @@ namespace StateMachine
         
         public EntityIdleState EntityIdleState { get; private set; }
         public EntityMoveState EntityMoveState { get; private set; }
+        public EntityHitState EntityHitState { get; private set; }
+        public EntityAirHitState EntityAirHitState { get; private set; }
+        public EntityStunState EntityStunState { get; private set; }
+        public EntityDodgeState EntityDodgeState { get; private set; }
+        
 
         public EntityStateMachine(EntityController entityController)
         {
@@ -16,6 +21,10 @@ namespace StateMachine
 
             EntityIdleState = new EntityIdleState(this);
             EntityMoveState = new EntityMoveState(this);
+            EntityHitState = new EntityHitState(this);
+            EntityAirHitState = new EntityAirHitState(this);
+            EntityStunState = new EntityStunState(this);
+            EntityDodgeState = new EntityDodgeState(this);
             
             CurrentState = EntityIdleState;
             CurrentState.Enter();
