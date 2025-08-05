@@ -7,7 +7,7 @@ namespace StateMachine
         public IState CurrentState { get; private set; }
         public EntityController EntityController { get; private set; }
         
-        public EntityIdleState EntityIdleState { get; private set; }
+        public EntityIdleState EntityIdleState { get; protected set; }
         public EntityMoveState EntityMoveState { get; private set; }
         public EntityHitState EntityHitState { get; private set; }
         public EntityAirHitState EntityAirHitState { get; private set; }

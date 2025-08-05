@@ -1,6 +1,6 @@
 ﻿namespace PlayerControl
 {
-    public enum ActionTrigger
+    public enum ActionTriggerType
     {
         MovementAction,
         NormalAttack,

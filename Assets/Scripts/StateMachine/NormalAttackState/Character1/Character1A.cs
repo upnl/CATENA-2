@@ -29,11 +29,11 @@ public class Character1A : NormalAttackState
         AttackTimer = 1f;
         MotionTimer = 2f;
         
-        EntityController.AddActionTrigger(ActionTrigger.Hit, OnHit);
-        EntityController.AddActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
+        EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
         
-        EntityController.AddActionTrigger(ActionTrigger.LightAttack, OnLightAttack);
-        EntityController.AddActionTrigger(ActionTrigger.HeavyAttack, OnHeavyAttack);
+        EntityController.AddActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
+        EntityController.AddActionTrigger(ActionTriggerType.HeavyAttack, OnHeavyAttack);
     }
 
     public override void Update()
@@ -50,11 +50,11 @@ public class Character1A : NormalAttackState
     {
         base.Exit();
         
-        EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnHit);
-        EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        EntityController.RemoveActionTrigger(ActionTriggerType.Hit, OnHit);
+        EntityController.RemoveActionTrigger(ActionTriggerType.AirHit, OnAirHit);
         
-        EntityController.RemoveActionTrigger(ActionTrigger.LightAttack, OnLightAttack);
-        EntityController.RemoveActionTrigger(ActionTrigger.HeavyAttack, OnHeavyAttack);
+        EntityController.RemoveActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
+        EntityController.RemoveActionTrigger(ActionTriggerType.HeavyAttack, OnHeavyAttack);
     }
 
     private void OnLightAttack(ActionTriggerContext ctx)

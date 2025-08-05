@@ -15,19 +15,24 @@ public class EntityIdleState : EntityState
 
         PlayAnimation("Idle");
              
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.MovementAction, OnMovement);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.MovementAction, OnMovement);
         
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.Dodge, OnDodge);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Dodge, OnDodge);
         
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.Hit, OnHit);
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
         
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.LightAttack, OnLightAttack);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
     }
 
     public override void Update()
     {
         base.Update();
+
+        if (stateMachine.EntityController.movementInput != Vector2.zero)
+        {
+            stateMachine.ChangeState(stateMachine.EntityMoveState);
+        }
     }
 
     public override void PhysicsUpdate()
@@ -39,14 +44,14 @@ public class EntityIdleState : EntityState
     {
         base.Exit();
         
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.MovementAction, OnMovement);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.MovementAction, OnMovement);
         
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Dodge, OnDodge);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.Dodge, OnDodge);
         
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnHit);
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.Hit, OnHit);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.AirHit, OnAirHit);
         
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.LightAttack, OnLightAttack);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
     }
 
     private void OnMovement(ActionTriggerContext context)

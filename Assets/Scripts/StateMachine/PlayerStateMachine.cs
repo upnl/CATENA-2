@@ -6,7 +6,14 @@ namespace StateMachine
     {
         public PlayerStateMachine(EntityController entityController) : base(entityController)
         {
+            EntityIdleState = new PlayerIdleState(this);
             
+            ChangeState(EntityIdleState);
+        }
+
+        public void GoToEntryState()
+        {
+            ChangeState(EntityNormalAttackState);
         }
     }
 }

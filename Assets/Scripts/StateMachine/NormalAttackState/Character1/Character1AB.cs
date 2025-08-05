@@ -21,8 +21,8 @@ public class Character1AB : NormalAttackState
         
         MotionTimer = 1f;
         
-        EntityController.AddActionTrigger(ActionTrigger.Hit, OnHit);
-        EntityController.AddActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
+        EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
     }
 
     public override void Update()
@@ -39,7 +39,7 @@ public class Character1AB : NormalAttackState
     {
         base.Exit();
         
-        EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnHit);
-        EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        EntityController.RemoveActionTrigger(ActionTriggerType.Hit, OnHit);
+        EntityController.RemoveActionTrigger(ActionTriggerType.AirHit, OnAirHit);
     }
 }

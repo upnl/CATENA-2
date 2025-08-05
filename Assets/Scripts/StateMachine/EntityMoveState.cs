@@ -17,12 +17,12 @@ public class EntityMoveState : EntityState
         
         PlayAnimation("Move");
         
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.MovementAction, OnMovement);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.MovementAction, OnMovement);
         
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.Dodge, OnDodge);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Dodge, OnDodge);
         
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.Hit, OnHit);
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
     }
 
     public override void Update()
@@ -48,12 +48,12 @@ public class EntityMoveState : EntityState
     {
         base.Exit();
         
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.MovementAction, OnMovement);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.MovementAction, OnMovement);
         
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Dodge, OnDodge);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.Dodge, OnDodge);
         
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnHit);
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.Hit, OnHit);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.AirHit, OnAirHit);
     }
 
     private void OnMovement(ActionTriggerContext context)

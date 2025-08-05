@@ -27,8 +27,8 @@ public class EntityAirHitState : EntityState
         // knockback 적용
         _rigidbody.AddForce(_context.KnockBack, ForceMode.Impulse);
         
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.Hit, OnAirHit);
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Hit, OnAirHit);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
     }
 
 
@@ -52,7 +52,7 @@ public class EntityAirHitState : EntityState
     {
         base.Exit();
         
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnAirHit);
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.Hit, OnAirHit);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.AirHit, OnAirHit);
     }
 }

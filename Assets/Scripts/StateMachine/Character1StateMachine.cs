@@ -2,7 +2,7 @@
 
 namespace StateMachine
 {
-    public class Character1StateMachine : EntityStateMachine
+    public class Character1StateMachine : PlayerStateMachine
     {
         public Character1StateMachine(EntityController entityController) : base(entityController)
         {

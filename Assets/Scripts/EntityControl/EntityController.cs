@@ -12,13 +12,15 @@ public class EntityController : MonoBehaviour
 {
     protected EntityStateMachine StateMachine;
     
-    public Dictionary<ActionTrigger, Action<ActionTriggerContext>> actionTriggers;
+    public Dictionary<ActionTriggerType, Action<ActionTriggerContext>> actionTriggers;
 
     public Transform feetPosition;
     public float landingDetectDistance;
     public LayerMask groundLayerMask;
 
     private Rigidbody _rigidbody;
+    
+    public Vector2 movementInput = Vector2.zero;
 
     public Animator Animator { get; private set; }
 
@@ -33,45 +35,45 @@ public class EntityController : MonoBehaviour
 
     protected virtual void Awake()
     {
-        actionTriggers = new Dictionary<ActionTrigger, Action<ActionTriggerContext>>();
+        actionTriggers = new Dictionary<ActionTriggerType, Action<ActionTriggerContext>>();
         
         _rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
     }
 
-    public void AddActionTrigger(ActionTrigger trigger, Action<ActionTriggerContext> callback)
+    public void AddActionTrigger(ActionTriggerType triggerType, Action<ActionTriggerContext> callback)
     {
-        if (actionTriggers.ContainsKey(trigger))
+        if (actionTriggers.ContainsKey(triggerType))
         {
-            actionTriggers[trigger] += callback;
+            actionTriggers[triggerType] += callback;
         }
         else
         {
-            actionTriggers[trigger] = callback;
+            actionTriggers[triggerType] = callback;
         }
     }
 
-    public void RemoveActionTrigger(ActionTrigger trigger, Action<ActionTriggerContext> callback)
+    public void RemoveActionTrigger(ActionTriggerType triggerType, Action<ActionTriggerContext> callback)
     {
-        if (actionTriggers.ContainsKey(trigger))
+        if (actionTriggers.ContainsKey(triggerType))
         {
-            actionTriggers[trigger] -= callback;
+            actionTriggers[triggerType] -= callback;
             
-            if (actionTriggers[trigger] == null)
-                actionTriggers.Remove(trigger);
+            if (actionTriggers[triggerType] == null)
+                actionTriggers.Remove(triggerType);
         }
     }
 
-    public void PublishActionTrigger(ActionTrigger trigger, ActionTriggerContext context)
+    public void PublishActionTrigger(ActionTriggerType triggerType, ActionTriggerContext context)
     {
-        if (actionTriggers.TryGetValue(trigger, out var action))
+        if (actionTriggers.TryGetValue(triggerType, out var action))
         {
             action.Invoke(context);
         }
         else
         {
 #if DEBUG
-            Debug.LogWarning("Trigger " + trigger + " has no action trigger");
+            Debug.LogWarning("Trigger " + triggerType + " has no action trigger");
 #endif
         }
     }
@@ -90,8 +92,8 @@ public class EntityController : MonoBehaviour
     {
         AttackContext = ctx;
         
-        if (ctx.KnockBack.y == 0) PublishActionTrigger(ActionTrigger.Hit, new ActionTriggerContext{ AttackContext = ctx });
-        else PublishActionTrigger(ActionTrigger.AirHit, new ActionTriggerContext{ AttackContext = ctx });
+        if (ctx.KnockBack.y == 0) PublishActionTrigger(ActionTriggerType.Hit, new ActionTriggerContext{ AttackContext = ctx });
+        else PublishActionTrigger(ActionTriggerType.AirHit, new ActionTriggerContext{ AttackContext = ctx });
     }
 
     public bool LandingDetect()

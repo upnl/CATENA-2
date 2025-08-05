@@ -26,8 +26,8 @@ public class EntityStunState : EntityState
         
         if (_stunTimer < _context.StunTime) _stunTimer = _context.StunTime; 
         
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.Hit, OnHit);
-        stateMachine.EntityController.AddActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
     }
 
     public override void Update()
@@ -51,7 +51,7 @@ public class EntityStunState : EntityState
     {
         base.Exit();
         
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnHit);
-        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.Hit, OnHit);
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.AirHit, OnAirHit);
     }
 }
