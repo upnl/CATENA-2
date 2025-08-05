@@ -17,6 +17,8 @@ public class Character1AB : NormalAttackState
     {
         base.Enter();
         
+        ParentStateMachine.PlayAnimation("AB");
+        
         MotionTimer = 1f;
         
         EntityController.AddActionTrigger(ActionTrigger.Hit, OnHit);

@@ -1,5 +1,6 @@
 ﻿using PlayerControl;
 using StateMachine;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerController : EntityController
@@ -18,7 +19,8 @@ public class PlayerController : EntityController
     protected override void Update()
     {
         base.Update();
-        LookDirection = cameraTransform.forward;
+        LookDirection = cameraTransform.forward.ProjectOntoPlane(Vector3.up);
+        LookDirection.Normalize();
     }
 
     [ContextMenu("Hit")]

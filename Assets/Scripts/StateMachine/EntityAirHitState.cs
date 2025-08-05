@@ -20,6 +20,8 @@ public class EntityAirHitState : EntityState
     {
         base.Enter();
 
+        PlayAnimation("Airhit");
+        
         _context = stateMachine.EntityController.AttackContext;
 
         // knockback 적용

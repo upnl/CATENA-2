@@ -8,8 +8,6 @@ public class Character1A : NormalAttackState
     private Character1AA _aaState;
     private Character1AB _abState;
     
-    
-    
     public Character1A(
         EntityController entityController, 
         NormalAttackStateMachine normalAttackStateMachine,
@@ -23,6 +21,8 @@ public class Character1A : NormalAttackState
     public override void Enter()
     {
         base.Enter();
+        
+        ParentStateMachine.PlayAnimation("A");
         
         CanAttack = false;
         

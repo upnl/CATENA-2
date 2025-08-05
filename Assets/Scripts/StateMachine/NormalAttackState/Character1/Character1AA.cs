@@ -20,6 +20,8 @@ public class Character1AA : NormalAttackState
     {
         base.Enter();
         
+        ParentStateMachine.PlayAnimation("AA");
+        
         CanAttack = false;
             
         MotionTimer = 1f;

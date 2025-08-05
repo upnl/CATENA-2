@@ -49,5 +49,10 @@ namespace StateMachine
         {
             CurrentState?.PhysicsUpdate();
         }
+        
+        public void PlayAnimation(string animationStateName)
+        {
+            EntityController.Animator.Play(animationStateName);
+        }
     }
 }

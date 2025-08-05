@@ -40,4 +40,9 @@ public class EntityState : IState
     {
         stateMachine.ChangeState(stateMachine.EntityAirHitState);
     }
+
+    public void PlayAnimation(string animationStateName)
+    {
+        stateMachine.PlayAnimation(animationStateName);
+    }
 }

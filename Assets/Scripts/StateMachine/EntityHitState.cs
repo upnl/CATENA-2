@@ -19,6 +19,8 @@ public class EntityHitState : EntityState
     {
         base.Enter();
         
+        PlayAnimation("Hit");
+        
         _context = stateMachine.EntityController.AttackContext;
         
         // knockback 적용

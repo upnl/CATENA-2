@@ -15,6 +15,8 @@ public class EntityDodgeState : EntityState
     {
         base.Enter();
         
+        PlayAnimation("Dodge");
+        
         _timerElapsed = 0f;
     }
 

@@ -12,8 +12,12 @@ public class EntityIdleState : EntityState
     public override void Enter()
     {
         base.Enter();
-        
+
+        PlayAnimation("Idle");
+             
         stateMachine.EntityController.AddActionTrigger(ActionTrigger.MovementAction, OnMovement);
+        
+        stateMachine.EntityController.AddActionTrigger(ActionTrigger.Dodge, OnDodge);
         
         stateMachine.EntityController.AddActionTrigger(ActionTrigger.Hit, OnHit);
         stateMachine.EntityController.AddActionTrigger(ActionTrigger.AirHit, OnAirHit);
@@ -37,6 +41,8 @@ public class EntityIdleState : EntityState
         
         stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.MovementAction, OnMovement);
         
+        stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Dodge, OnDodge);
+        
         stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.Hit, OnHit);
         stateMachine.EntityController.RemoveActionTrigger(ActionTrigger.AirHit, OnAirHit);
         
@@ -45,15 +51,23 @@ public class EntityIdleState : EntityState
 
     private void OnMovement(ActionTriggerContext context)
     {
-        if (context.InputActionPhase == InputActionPhase.Started)
+        if (context.InputActionPhase == InputActionPhase.Performed)
         {
             stateMachine.ChangeState(stateMachine.EntityMoveState);
         }
     }
     
+    private void OnDodge(ActionTriggerContext context)
+    {
+        if (context.InputActionPhase == InputActionPhase.Performed)
+        {
+            stateMachine.ChangeState(stateMachine.EntityDodgeState);
+        }
+    }
+    
     private void OnLightAttack(ActionTriggerContext context)
     {
-        if (context.InputActionPhase == InputActionPhase.Started)
+        if (context.InputActionPhase == InputActionPhase.Performed)
         {
             stateMachine.ChangeState(stateMachine.EntityNormalAttackState);
         }
