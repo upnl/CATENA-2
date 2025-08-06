@@ -10,6 +10,8 @@ public class NormalAttackState : IState
     
     protected AttackBoxDetector BoxDetector;
 
+    protected AttackContext AttackContext;
+
     protected bool CanAttack;
     public NormalAttackState(EntityController entityController, NormalAttackStateMachine normalAttackStateMachine, EntityStateMachine parentStateMachine)
     {
@@ -72,6 +74,6 @@ public class NormalAttackState : IState
 
     protected void OnApplyAttack(ActionTriggerContext ctx)
     {
-        BoxDetector.Attack();
+        BoxDetector.Attack(AttackContext);
     }
 }

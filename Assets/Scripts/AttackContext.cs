@@ -1,11 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 
+[Serializable]
 public struct AttackContext
 {
-    public Vector3 KnockBack;
-    public bool IsIgnoringDodge;
+    public Vector3 knockBack;
+    public bool isIgnoringDodge;
     
-    public float Damage;
-    public float StunTime;
+    public float damage;
+    public float stunTime;
+
+    public Vector3 boxOffset;
+    public Vector3 boxSize;
 }

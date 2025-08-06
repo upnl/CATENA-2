@@ -23,6 +23,8 @@ public class EntityMoveState : EntityState
         
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
+        
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
     }
 
     public override void Update()
@@ -59,6 +61,8 @@ public class EntityMoveState : EntityState
         
         stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.Hit, OnHit);
         stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.AirHit, OnAirHit);
+        
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
     }
 
     private void OnMovement(ActionTriggerContext context)
@@ -74,6 +78,14 @@ public class EntityMoveState : EntityState
         if (context.InputActionPhase == InputActionPhase.Performed)
         {
             stateMachine.ChangeState(stateMachine.EntityDodgeState);
+        }
+    }
+    
+    private void OnLightAttack(ActionTriggerContext context)
+    {
+        if (context.InputActionPhase == InputActionPhase.Performed)
+        {
+            stateMachine.ChangeState(stateMachine.EntityNormalAttackState);
         }
     }
 }

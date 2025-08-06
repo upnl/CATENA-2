@@ -9,8 +9,6 @@ public class EnemyController : EntityController
     public PlayerStateMachine PlayerStateMachine => StateMachine as PlayerStateMachine;
     
     public float[] normalAttackDashes;
-
-    public float dodgeDash;
     
     protected override void Awake()
     {

@@ -26,7 +26,7 @@ public class EntityAirHitState : EntityState
 
         // knockback 적용
         _rigidbody.linearVelocity = Vector3.zero;
-        _rigidbody.AddForce(_context.KnockBack, ForceMode.Impulse);
+        _rigidbody.AddForce(_context.knockBack, ForceMode.Impulse);
         
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Hit, OnAirHit);
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
@@ -39,7 +39,7 @@ public class EntityAirHitState : EntityState
         
         if (stateMachine.EntityController.LandingDetect())
         {
-            if (_context.StunTime > 0) stateMachine.ChangeState(stateMachine.EntityStunState);
+            if (_context.stunTime > 0) stateMachine.ChangeState(stateMachine.EntityStunState);
             else stateMachine.ChangeState(stateMachine.EntityIdleState);
         }
     }

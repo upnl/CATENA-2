@@ -15,6 +15,8 @@ public class Character1AAA : NormalAttackState
     {
         _rigidbody = EntityController.GetComponent<Rigidbody>();
         _playerController = EntityController as PlayerController;
+        
+        AttackContext = _playerController.attackContextSO.contexts[2];
     }
 
     public override void Enter()

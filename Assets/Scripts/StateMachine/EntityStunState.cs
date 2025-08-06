@@ -23,7 +23,7 @@ public class EntityStunState : EntityState
         
         _context = stateMachine.EntityController.AttackContext;
         
-        if (_stunTimer < _context.StunTime) _stunTimer = _context.StunTime; 
+        if (_stunTimer < _context.stunTime) _stunTimer = _context.stunTime; 
         
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);

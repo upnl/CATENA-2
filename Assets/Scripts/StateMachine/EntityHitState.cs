@@ -25,7 +25,7 @@ public class EntityHitState : EntityState
         
         // knockback 적용
         _rigidbody.linearVelocity = Vector3.zero;
-        _rigidbody.AddForce(_context.KnockBack, ForceMode.Impulse);
+        _rigidbody.AddForce(_context.knockBack, ForceMode.Impulse);
 
 
         _hitMotionTimer = 1f;
@@ -41,7 +41,7 @@ public class EntityHitState : EntityState
         if (_hitMotionTimer > 0) _hitMotionTimer -= Time.deltaTime;
         if (_hitMotionTimer <= 0)
         {
-            if (_context.StunTime > 0) stateMachine.ChangeState(stateMachine.EntityStunState);
+            if (_context.stunTime > 0) stateMachine.ChangeState(stateMachine.EntityStunState);
             else stateMachine.ChangeState(stateMachine.EntityIdleState);
         }
     }

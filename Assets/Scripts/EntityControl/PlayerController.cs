@@ -32,6 +32,9 @@ public class PlayerController : EntityController
 
     private void OnEnable()
     {
+        LookDirection = cameraTransform.forward.ProjectOntoPlane(Vector3.up);
+        LookDirection.Normalize();
+        
         PlayerStateMachine.GoToEntryState();
         
         disappearTimer = 2f;
@@ -64,17 +67,17 @@ public class PlayerController : EntityController
     [ContextMenu("Hit")]
     public void Hit()
     {
-        Hit(new AttackContext { Damage = 10f, IsIgnoringDodge = true, KnockBack = new Vector3(0, 0, -5f), StunTime = 2f});
+        Hit(new AttackContext { damage = 10f, isIgnoringDodge = true, knockBack = new Vector3(0, 0, -5f), stunTime = 2f});
     }
     
     [ContextMenu("AirHit")]
     public void AirHit()
     {
         Hit(new AttackContext { 
-            Damage = 10f, 
-            IsIgnoringDodge = true, 
-            KnockBack = new Vector3(0, 8f, 0.2f), 
-            StunTime = 1f});
+            damage = 10f, 
+            isIgnoringDodge = true, 
+            knockBack = new Vector3(0, 8f, 0.2f), 
+            stunTime = 1f});
     }
 
     public bool IsAttacking()

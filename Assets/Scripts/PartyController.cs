@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -35,8 +36,22 @@ public class PartyController : MonoBehaviour
             _currentCharacterIndex = num - 1;
             playerInputProcessors[_currentCharacterIndex].gameObject.SetActive(true);
             playerInputProcessors[_currentCharacterIndex].transform.position = currentPos;
-            
-            cinemachineCamera.Follow = playerInputProcessors[_currentCharacterIndex].transform;
+
+            cinemachineCamera.Target.TrackingTarget = playerInputProcessors[_currentCharacterIndex].transform;
+            cinemachineCamera.Target.LookAtTarget = playerInputProcessors[_currentCharacterIndex].transform;
+
+            StartCoroutine(ChangeCharacterEffect());
         }
+    }
+
+    private IEnumerator ChangeCharacterEffect()
+    {
+        Time.timeScale = 0.5f;
+        Time.fixedDeltaTime *= 0.5f;
+
+        yield return new WaitForSecondsRealtime(1f);
+        
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime *= 2f;
     }
 }

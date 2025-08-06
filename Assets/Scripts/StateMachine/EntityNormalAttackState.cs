@@ -17,6 +17,8 @@ public class EntityNormalAttackState : EntityState
         base.Enter();
         
         NormalAttackStateMachine.EnterNormalAttackState();
+        
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Dodge, OnDodge);
     }
 
     public override void Update()
@@ -38,5 +40,15 @@ public class EntityNormalAttackState : EntityState
         base.Exit();
         
         NormalAttackStateMachine.Exit();
+        
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.Dodge, OnDodge);
+    }
+    
+    private void OnDodge(ActionTriggerContext context)
+    {
+        if (context.InputActionPhase == InputActionPhase.Performed)
+        {
+            stateMachine.ChangeState(stateMachine.EntityDodgeState);
+        }
     }
 }

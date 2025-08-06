@@ -52,7 +52,7 @@ namespace StateMachine
         
         public void PlayAnimation(string animationStateName)
         {
-            EntityController.Animator.Play(animationStateName);
+            EntityController.Animator.Play(animationStateName, 0, 0f);
         }
     }
 }

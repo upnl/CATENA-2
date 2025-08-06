@@ -35,6 +35,8 @@ public class EntityController : MonoBehaviour
     
     public float dodgeDash;
 
+    public AttackContextsSO attackContextSO;
+
     protected virtual void Awake()
     {
         actionTriggers = new Dictionary<ActionTriggerType, Action<ActionTriggerContext>>();
@@ -94,7 +96,7 @@ public class EntityController : MonoBehaviour
     {
         AttackContext = ctx;
         
-        if (ctx.KnockBack.y == 0) PublishActionTrigger(ActionTriggerType.Hit, new ActionTriggerContext{ AttackContext = ctx });
+        if (ctx.knockBack.y == 0) PublishActionTrigger(ActionTriggerType.Hit, new ActionTriggerContext{ AttackContext = ctx });
         else PublishActionTrigger(ActionTriggerType.AirHit, new ActionTriggerContext{ AttackContext = ctx });
     }
 
