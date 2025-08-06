@@ -14,7 +14,7 @@ namespace StateMachine
 
         public void GoToEntryState()
         {
-            ChangeState(EntityNormalAttackState);
+            ChangeState(EntityIdleState);
         }
     }
 }

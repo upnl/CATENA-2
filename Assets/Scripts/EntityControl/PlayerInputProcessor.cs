@@ -16,6 +16,8 @@ public class PlayerInputProcessor : MonoBehaviour
     private InputAction _heavyAttackAction;
     private InputAction _dodgeAction;
     private InputAction[] _skillActions;
+
+    private Action<InputAction.CallbackContext>[] _skillPublishActions;
     private void Awake()
     {
         _entityController = GetComponent<EntityController>();
@@ -30,6 +32,8 @@ public class PlayerInputProcessor : MonoBehaviour
         {
             _skillActions[i] = InputSystem.actions.FindAction("Skill" + (i+1));  
         }
+        
+        _skillPublishActions = new Action<InputAction.CallbackContext>[2];
     }
 
     private void OnEnable()
@@ -42,7 +46,8 @@ public class PlayerInputProcessor : MonoBehaviour
         
         for (int i = 0; i < _skillActions.Length; i++)
         {
-            _skillActions[i].SubscribeAllPhases(PublishSkillTrigger(i+1));
+            _skillPublishActions[i] = PublishSkillTrigger(i + 1);
+            _skillActions[i].SubscribeAllPhases(_skillPublishActions[i]);
         }
 
         isControllable = true;
@@ -118,7 +123,7 @@ public class PlayerInputProcessor : MonoBehaviour
         
         for (int i = 0; i < _skillActions.Length; i++)
         {
-            _skillActions[i].UnsubscribeAllPhases(PublishSkillTrigger(i+1));
+            _skillActions[i].UnsubscribeAllPhases(_skillPublishActions[i]);
         }
 
         isControllable = false;

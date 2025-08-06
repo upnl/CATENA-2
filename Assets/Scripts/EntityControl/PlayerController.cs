@@ -82,6 +82,6 @@ public class PlayerController : EntityController
 
     public bool IsAttacking()
     {
-        return StateMachine.CurrentState is EntityNormalAttackState;
+        return StateMachine.CurrentState is EntityNormalAttackState || StateMachine.CurrentState is EntitySkillState;
     }
 }
