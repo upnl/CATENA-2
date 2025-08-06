@@ -40,7 +40,7 @@ public class AttackBoxDetector : MonoBehaviour
 
     public void Attack(AttackContext ctx)
     {
-        Collider[] results = new Collider[10];
+        Collider[] results = new Collider[100];
         
         var boxPos = transform.position + Quaternion.LookRotation(transform.forward, Vector3.up) * ctx.boxOffset;
         Physics.OverlapBoxNonAlloc(boxPos, ctx.boxSize, results, transform.rotation);
@@ -62,7 +62,7 @@ public class AttackBoxDetector : MonoBehaviour
 
                 var pos = result.ClosestPoint(transform.position);
                 
-                Instantiate(hitEffect, pos, Quaternion.identity);
+                if (hitEffect != null) Instantiate(hitEffect, pos, Quaternion.identity);
             }
         }
     }

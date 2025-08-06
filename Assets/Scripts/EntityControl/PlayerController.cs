@@ -24,7 +24,7 @@ public class PlayerController : EntityController
     {
         base.Awake();
 
-        StateMachine = new Character1StateMachine(this);
+        StateMachine = new PlayerStateMachine(this);
         
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
