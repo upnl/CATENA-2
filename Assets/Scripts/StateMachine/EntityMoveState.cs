@@ -39,9 +39,14 @@ public class EntityMoveState : EntityState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        var lookDir = stateMachine.EntityController.LookDirection;
+        var lookRightDir = Vector3.Cross(Vector3.up, lookDir);
+        var inputVec = stateMachine.EntityController.movementInput;
+        var moveVec = (inputVec.y * lookDir + inputVec.x * lookRightDir).normalized;
         
         _rigidbody.MovePosition(stateMachine.EntityController.transform.position + 
-                                stateMachine.EntityController.LookDirection * (stateMachine.EntityController.movementSpeed * Time.fixedDeltaTime));
+                                moveVec * (stateMachine.EntityController.movementSpeed * Time.fixedDeltaTime));
     }
 
     public override void Exit()

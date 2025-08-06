@@ -3,11 +3,11 @@ using StateMachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Character1AB : NormalAttackState
+public class Character1AAA : NormalAttackState
 {
     private Rigidbody _rigidbody;
     private PlayerController _playerController;
-    public Character1AB (
+    public Character1AAA(
         EntityController entityController, 
         NormalAttackStateMachine normalAttackStateMachine, 
         EntityStateMachine parentStateMachine) 
@@ -21,7 +21,9 @@ public class Character1AB : NormalAttackState
     {
         base.Enter();
         
-        ParentStateMachine.PlayAnimation("AB");
+        ParentStateMachine.PlayAnimation("AAA");
+        
+        CanAttack = false;
         
         var entityTransform = EntityController.transform;
         entityTransform.LookAt(entityTransform.position + EntityController.LookDirection);
@@ -52,6 +54,14 @@ public class Character1AB : NormalAttackState
         EntityController.RemoveActionTrigger(ActionTriggerType.MotionEvent, OnAttackAction);
     }
 
+    private void OnLightAttack(ActionTriggerContext ctx)
+    {
+        if (ctx.InputActionPhase == InputActionPhase.Started)
+        {
+            
+        }
+    }
+    
     private void OnAttackAction(ActionTriggerContext ctx)
     {
         _rigidbody.AddForce(EntityController.LookDirection * _playerController.normalAttackDashes[0], ForceMode.Impulse);

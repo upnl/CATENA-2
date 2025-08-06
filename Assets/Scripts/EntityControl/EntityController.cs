@@ -32,6 +32,8 @@ public class EntityController : MonoBehaviour
 
     public float movementSpeed;
     public float bodyRotateSpeed;
+    
+    public float dodgeDash;
 
     protected virtual void Awake()
     {

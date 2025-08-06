@@ -3,17 +3,25 @@ using StateMachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Character1AB : NormalAttackState
+public class Character1AAB : NormalAttackState
 {
+    // 실제로는 Animation 의 현재 상황에 따라서 공격 가능 판단해야함
+    private float _attackTimer;
+    private float _motionTimer;
+
+    private bool _move;
+
     private Rigidbody _rigidbody;
+    
     private PlayerController _playerController;
-    public Character1AB (
+    public Character1AAB(
         EntityController entityController, 
         NormalAttackStateMachine normalAttackStateMachine, 
         EntityStateMachine parentStateMachine) 
         : base(entityController, normalAttackStateMachine, parentStateMachine)
     {
         _rigidbody = EntityController.GetComponent<Rigidbody>();
+        
         _playerController = EntityController as PlayerController;
     }
 
@@ -21,7 +29,9 @@ public class Character1AB : NormalAttackState
     {
         base.Enter();
         
-        ParentStateMachine.PlayAnimation("AB");
+        ParentStateMachine.PlayAnimation("AAB");
+        
+        CanAttack = false;
         
         var entityTransform = EntityController.transform;
         entityTransform.LookAt(entityTransform.position + EntityController.LookDirection);
@@ -40,6 +50,12 @@ public class Character1AB : NormalAttackState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        if (_move)
+        {
+            _rigidbody.MovePosition(EntityController.transform.position + 
+                                    EntityController.transform.forward * (_playerController.normalAttackDashes[1] * Time.fixedDeltaTime));
+        }
     }
 
     public override void Exit()
@@ -52,8 +68,23 @@ public class Character1AB : NormalAttackState
         EntityController.RemoveActionTrigger(ActionTriggerType.MotionEvent, OnAttackAction);
     }
 
+    private void OnLightAttack(ActionTriggerContext ctx)
+    {
+        if (ctx.InputActionPhase == InputActionPhase.Started)
+        {
+            
+        }
+    }
+    
     private void OnAttackAction(ActionTriggerContext ctx)
     {
-        _rigidbody.AddForce(EntityController.LookDirection * _playerController.normalAttackDashes[0], ForceMode.Impulse);
+        if (ctx.AttackActionCtxNum == 0)
+        {
+            _move = true;
+        }
+        else
+        {
+            _move = false;
+        }
     }
 }

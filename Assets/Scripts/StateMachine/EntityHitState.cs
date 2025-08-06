@@ -24,10 +24,11 @@ public class EntityHitState : EntityState
         _context = stateMachine.EntityController.AttackContext;
         
         // knockback 적용
+        _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.AddForce(_context.KnockBack, ForceMode.Impulse);
 
 
-        _hitMotionTimer = 0.2f;
+        _hitMotionTimer = 1f;
         
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);

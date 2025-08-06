@@ -19,10 +19,9 @@ public class EntityStunState : EntityState
     {
         base.Enter();
         
-        _context = stateMachine.EntityController.AttackContext;
+        PlayAnimation("Stun");
         
-        // knockback 적용
-        _rigidbody.AddForce(_context.KnockBack, ForceMode.Impulse);
+        _context = stateMachine.EntityController.AttackContext;
         
         if (_stunTimer < _context.StunTime) _stunTimer = _context.StunTime; 
         

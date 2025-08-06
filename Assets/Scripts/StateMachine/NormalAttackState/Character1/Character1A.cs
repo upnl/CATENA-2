@@ -8,6 +8,9 @@ public class Character1A : NormalAttackState
     private Character1AA _aaState;
     private Character1AB _abState;
     
+    private Rigidbody _rigidbody;
+    private PlayerController _playerController;
+    
     public Character1A(
         EntityController entityController, 
         NormalAttackStateMachine normalAttackStateMachine,
@@ -16,6 +19,9 @@ public class Character1A : NormalAttackState
     {
         _aaState = new Character1AA(entityController, normalAttackStateMachine, parentStateMachine);
         _abState = new Character1AB(entityController, normalAttackStateMachine, parentStateMachine);
+        
+        _rigidbody = EntityController.GetComponent<Rigidbody>();
+        _playerController = EntityController as PlayerController;
     }
 
     public override void Enter()
@@ -26,14 +32,16 @@ public class Character1A : NormalAttackState
         
         CanAttack = false;
         
-        AttackTimer = 1f;
-        MotionTimer = 2f;
+        var entityTransform = EntityController.transform;
+        entityTransform.LookAt(entityTransform.position + EntityController.LookDirection);
         
         EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
         EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
         
         EntityController.AddActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
         EntityController.AddActionTrigger(ActionTriggerType.HeavyAttack, OnHeavyAttack);
+        
+        EntityController.AddActionTrigger(ActionTriggerType.MotionEvent, OnAttackAction);
     }
 
     public override void Update()
@@ -55,6 +63,8 @@ public class Character1A : NormalAttackState
         
         EntityController.RemoveActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
         EntityController.RemoveActionTrigger(ActionTriggerType.HeavyAttack, OnHeavyAttack);
+        
+        EntityController.RemoveActionTrigger(ActionTriggerType.MotionEvent, OnAttackAction);
     }
 
     private void OnLightAttack(ActionTriggerContext ctx)
@@ -75,5 +85,10 @@ public class Character1A : NormalAttackState
         {
             NormalAttackStateMachine.ChangeState(_abState);
         }
+    }
+    
+    private void OnAttackAction(ActionTriggerContext ctx)
+    {
+        _rigidbody.AddForce(EntityController.LookDirection * _playerController.normalAttackDashes[0], ForceMode.Impulse);
     }
 }

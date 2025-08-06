@@ -12,13 +12,22 @@ public class PlayerController : EntityController
     public bool isControllable;
 
     public float disappearTimer;
-    
+
+    public bool canAttack;
+
+    // 임시. 
+    // AB AAB 
+    public float[] normalAttackDashes;
+
     
     protected override void Awake()
     {
         base.Awake();
 
         StateMachine = new Character1StateMachine(this);
+        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnEnable()

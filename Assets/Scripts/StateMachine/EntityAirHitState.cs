@@ -25,6 +25,7 @@ public class EntityAirHitState : EntityState
         _context = stateMachine.EntityController.AttackContext;
 
         // knockback 적용
+        _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.AddForce(_context.KnockBack, ForceMode.Impulse);
         
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Hit, OnAirHit);
