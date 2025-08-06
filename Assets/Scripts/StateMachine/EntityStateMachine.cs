@@ -14,6 +14,7 @@ namespace StateMachine
         public EntityStunState EntityStunState { get; private set; }
         public EntityDodgeState EntityDodgeState { get; private set; }
         public EntityNormalAttackState EntityNormalAttackState { get; protected set; }
+        public EntitySkillState EntitySkill1State { get; protected set; }
         
 
         public EntityStateMachine(EntityController entityController)
@@ -26,6 +27,7 @@ namespace StateMachine
             EntityAirHitState = new EntityAirHitState(this);
             EntityStunState = new EntityStunState(this);
             EntityDodgeState = new EntityDodgeState(this);
+
             
             CurrentState = EntityIdleState;
             CurrentState.Enter();

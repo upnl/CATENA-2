@@ -45,4 +45,12 @@ public class EntityState : IState
     {
         stateMachine.PlayAnimation(animationStateName);
     }
+
+    protected void OnSkill(ActionTriggerContext context)
+    {
+        if (context.SkillNum == 1)
+        {
+            stateMachine.ChangeState(stateMachine.EntitySkill1State);
+        }
+    }
 }

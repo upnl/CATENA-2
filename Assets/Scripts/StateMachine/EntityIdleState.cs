@@ -23,6 +23,8 @@ public class EntityIdleState : EntityState
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
         
         stateMachine.EntityController.AddActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
+        
+        stateMachine.EntityController.AddActionTrigger(ActionTriggerType.Skill, OnSkill);
     }
 
     public override void Update()
@@ -52,6 +54,8 @@ public class EntityIdleState : EntityState
         stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.AirHit, OnAirHit);
         
         stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
+        
+        stateMachine.EntityController.RemoveActionTrigger(ActionTriggerType.Skill, OnSkill);
     }
 
     private void OnMovement(ActionTriggerContext context)

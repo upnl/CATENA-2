@@ -14,4 +14,8 @@ public struct AttackContext
 
     public Vector3 boxOffset;
     public Vector3 boxSize;
+
+    public float[] floatVariables;
+
+    public LayerMask groundMask;
 }

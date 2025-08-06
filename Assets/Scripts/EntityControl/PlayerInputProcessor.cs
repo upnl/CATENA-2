@@ -24,11 +24,12 @@ public class PlayerInputProcessor : MonoBehaviour
         _lightAttackAction = InputSystem.actions.FindAction("LightAttack");
         _heavyAttackAction = InputSystem.actions.FindAction("HeavyAttack");
         _dodgeAction = InputSystem.actions.FindAction("Dodge");
-        // _skillActions = new InputAction[3];
-        // for (int i = 0; i < _skillActions.Length; i++)
-        // {
-        //     _skillActions[i] = InputSystem.actions.FindAction("Skill" + (i+1));  
-        // }
+
+        _skillActions = new InputAction[2];
+        for (int i = 0; i < _skillActions.Length; i++)
+        {
+            _skillActions[i] = InputSystem.actions.FindAction("Skill" + (i+1));  
+        }
     }
 
     private void OnEnable()
@@ -39,10 +40,10 @@ public class PlayerInputProcessor : MonoBehaviour
         _heavyAttackAction.SubscribeAllPhases(PublishHeavyAttackTrigger);
         _dodgeAction.SubscribeAllPhases(PublishDodgeTrigger);
         
-        // for (int i = 0; i < _skillActions.Length; i++)
-        // {
-        //     _skillActions[i].SubscribeAllPhases(PublishSkillTrigger(i));
-        // }
+        for (int i = 0; i < _skillActions.Length; i++)
+        {
+            _skillActions[i].SubscribeAllPhases(PublishSkillTrigger(i+1));
+        }
 
         isControllable = true;
     }
@@ -98,10 +99,11 @@ public class PlayerInputProcessor : MonoBehaviour
     private Action<InputAction.CallbackContext> PublishSkillTrigger(int skillIndex)
     {
         return ctx => _entityController.PublishActionTrigger(
-            ActionTriggerType.Skill1 + skillIndex,
+            ActionTriggerType.Skill,
             new ActionTriggerContext
             {
-                InputActionPhase = ctx.phase
+                InputActionPhase = ctx.phase,
+                SkillNum = skillIndex
             });
     }
     
@@ -114,10 +116,10 @@ public class PlayerInputProcessor : MonoBehaviour
         _heavyAttackAction.UnsubscribeAllPhases(PublishHeavyAttackTrigger);
         _dodgeAction.UnsubscribeAllPhases(PublishDodgeTrigger);
         
-        // for (int i = 0; i < _skillActions.Length; i++)
-        // {
-        //     _skillActions[i].UnsubscribeAllPhases(PublishSkillTrigger(i));
-        // }
+        for (int i = 0; i < _skillActions.Length; i++)
+        {
+            _skillActions[i].UnsubscribeAllPhases(PublishSkillTrigger(i+1));
+        }
 
         isControllable = false;
         PlayerController.isControllable = false;

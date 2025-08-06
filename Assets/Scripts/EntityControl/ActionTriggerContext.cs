@@ -10,5 +10,7 @@ namespace PlayerControl
         public AttackContext AttackContext;
 
         public int AttackActionCtxNum;
+
+        public int SkillNum;
     }
 }
