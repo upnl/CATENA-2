@@ -14,6 +14,8 @@ public class PartyController : MonoBehaviour
     private InputAction _changeAction;
     private int _currentCharacterIndex;
 
+    public Action onCharacterChange;
+
     public float[] changeCooldowns;
 
     private void Start()
@@ -64,6 +66,8 @@ public class PartyController : MonoBehaviour
             cinemachineCamera.Target.LookAtTarget = playerInputProcessors[_currentCharacterIndex].transform;
 
             StartCoroutine(ChangeCharacterEffect());
+            
+            onCharacterChange.Invoke();
         }
     }
 
