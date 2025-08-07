@@ -33,7 +33,9 @@ public class MutantA : NormalAttackState
         CanAttack = false;
         
         var entityTransform = EntityController.transform;
-        entityTransform.LookAt(entityTransform.position + EntityController.LookDirection);
+        var playerPos = _enemyController.playerTransform.position;
+        playerPos.y = 0;
+        entityTransform.LookAt(playerPos);
         
         EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
         EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
