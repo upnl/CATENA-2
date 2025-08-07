@@ -92,12 +92,19 @@ public class EntityController : MonoBehaviour
         StateMachine.PhysicsUpdate();
     }
     
-    public void Hit(AttackContext ctx)
+    public bool Hit(AttackContext ctx)
     {
         AttackContext = ctx;
+
+        if (StateMachine.CurrentState is EntityDodgeState)
+        {
+            if (!ctx.isIgnoringDodge) return false;
+        }
         
         if (ctx.knockBack.y == 0) PublishActionTrigger(ActionTriggerType.Hit, new ActionTriggerContext{ AttackContext = ctx });
         else PublishActionTrigger(ActionTriggerType.AirHit, new ActionTriggerContext{ AttackContext = ctx });
+
+        return true;
     }
 
     public bool LandingDetect()
