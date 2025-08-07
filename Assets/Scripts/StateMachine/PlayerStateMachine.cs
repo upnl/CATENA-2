@@ -7,7 +7,7 @@ namespace StateMachine
         public PlayerStateMachine(EntityController entityController) : base(entityController)
         {
             EntityIdleState = new PlayerIdleState(this);
-            EntitySkill1State = new CharacterSkill1State(this);
+            
             
             ChangeState(EntityIdleState);
         }
