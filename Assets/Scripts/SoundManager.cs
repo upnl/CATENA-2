@@ -3,8 +3,11 @@ using System;
 
 public enum SoundType //넣을 소리 종류
 {
-    Sword,
-    Skill,
+    Swing,
+    Tag,
+    SwordSkill,
+    ShieldSkill,
+    PunchSkill,
     Hit,
     Stun,
 }
