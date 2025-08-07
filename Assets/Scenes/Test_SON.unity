@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 195564359}
   - component: {fileID: 195564358}
   - component: {fileID: 195564357}
-  - component: {fileID: 195564355}
+  - component: {fileID: 195564363}
   - component: {fileID: 195564354}
   - component: {fileID: 195564362}
   - component: {fileID: 195564361}
@@ -155,35 +155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isControllable: 1
---- !u!114 &195564355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195564353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ae8152b8e6d4c01bfd3d11737cea02d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  feetPosition: {fileID: 315927666}
-  landingDetectDistance: 0.2
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  movementInput: {x: 0, y: 0}
-  movementSpeed: 5
-  bodyRotateSpeed: 15
-  dodgeDash: 5
-  attackContextSO: {fileID: 0}
-  cameraTransform: {fileID: 1310341783}
-  isControllable: 0
-  disappearTimer: 0
-  canAttack: 0
-  normalAttackDashes:
-  - 3
-  - 2
 --- !u!136 &195564357
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -320,6 +291,34 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0}
   boxSize: {x: 0, y: 0, z: 0}
   showGizmos: 1
+--- !u!114 &195564363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195564353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c078ed96f92a41aa9557818c32a8c553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feetPosition: {fileID: 315927666}
+  landingDetectDistance: 0.5
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  movementInput: {x: 0, y: 0}
+  movementSpeed: 5
+  bodyRotateSpeed: 15
+  dodgeDash: 5
+  attackContextSO: {fileID: 11400000, guid: e4fa9cbd4db53ee4b9d70c8e630b0539, type: 2}
+  cameraTransform: {fileID: 1310341783}
+  isControllable: 0
+  disappearTimer: 0
+  canAttack: 0
+  normalAttackDashes:
+  - 0
 --- !u!1 &254882373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,7 +1384,7 @@ Animator:
   m_GameObject: {fileID: 460184913}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 133e09a6550c9a4429be165c297151cc, type: 3}
-  m_Controller: {fileID: 9100000, guid: 062625a157cde3443bc66e07cc2d2761, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4b9db23876d9a224aa1bd52f3c210aa0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1409,7 +1408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aaa1d1955f1a9d478e9c01d99ee87ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 195564355}
+  playerController: {fileID: 195564363}
 --- !u!1 &628594637
 GameObject:
   m_ObjectHideFlags: 0
