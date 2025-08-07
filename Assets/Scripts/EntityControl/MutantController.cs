@@ -10,11 +10,13 @@ public class MutantController : EnemyController
     private ActionTriggerContext _actionTriggerContext;
 
     private PartyController _partyController;
-    
+
+    public AboveEnemyUI hpBarUi;
     protected override void Awake()
     {
         base.Awake();
-        
+
+        hp = maxHp;
         StateMachine = new MutantStateMachine(this);
 
         _partyController = GameObject.FindObjectOfType<PartyController>();
@@ -37,11 +39,13 @@ public class MutantController : EnemyController
 
         hp = Mathf.Clamp(hp, 0, maxHp);
         mp = Mathf.Clamp(mp,0, maxMp);
+        
+        hpBarUi.SetHpSlider(hp/maxHp);
 
         if (playerTransform == null) return;
         
         // death mechanism
-        if (hp < 0) Destroy(gameObject);
+        if (hp <= 0) Destroy(gameObject);
 
         movementInput = Vector2.up;
         var dir = (playerTransform.position - transform.position);

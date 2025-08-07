@@ -4111,6 +4111,7 @@ MonoBehaviour:
   normalAttackDashes:
   - 0
   detectDistance: 3
+  hpBarUi: {fileID: 1666207086}
 --- !u!114 &1537719984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4506,6 +4507,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1246669688690356472, guid: c9b42a4db94e54b878603de244696d71, type: 3}
   m_PrefabInstance: {fileID: 1666207084}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1666207086 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4571785976369860410, guid: c9b42a4db94e54b878603de244696d71, type: 3}
+  m_PrefabInstance: {fileID: 1666207084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa8c1eff45494b1f84c9a7e1f054eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1692822545
 PrefabInstance:
   m_ObjectHideFlags: 0
