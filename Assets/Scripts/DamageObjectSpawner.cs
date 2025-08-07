@@ -32,7 +32,7 @@ public class DamageObjectSpawner : MonoBehaviour
 
         var damageObjectBehaviour = damageObject.GetComponent<DamageObjectBehaviour>();
         damageObjectBehaviour.Initialize(damageAmount.ToString(), damageObjectDefaultLifeTime);
-
+        
         // TODO
     }
 }

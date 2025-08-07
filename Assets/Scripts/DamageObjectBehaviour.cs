@@ -15,11 +15,11 @@ public class DamageObjectBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (_lifeTime <= 0f)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        // if (_lifeTime <= 0f)
+        // {
+        //     Destroy(gameObject);
+        //     return;
+        // }
         
         _lifeTime -= Time.deltaTime;
     }
