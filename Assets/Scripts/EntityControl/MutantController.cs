@@ -35,7 +35,8 @@ public class MutantController : EnemyController
         
         if (Vector3.Distance(playerTransform.position, transform.position) < detectDistance)
         {
-            PublishActionTrigger(ActionTriggerType.Skill, _actionTriggerContext);
+            if (mp >= 20) PublishActionTrigger(ActionTriggerType.Skill, _actionTriggerContext);
+            else PublishActionTrigger(ActionTriggerType.LightAttack, _actionTriggerContext);
         }
     }
 }

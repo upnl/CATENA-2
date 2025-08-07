@@ -27,11 +27,14 @@ public class MutantSkill1State : EntitySkillState
     {
         base.Enter();
         
+        LookPlayer();
+        
         stateMachine.PlayAnimation("Skill1");
         
         AttackContext = _enemyController.attackContextSO.contexts[5];
         
         _enemyController.AddActionTrigger(ActionTriggerType.MotionEvent, OnMotionEvent);
+        _enemyController.mp -= 20f;
     }
 
     public override void Update()
@@ -58,30 +61,25 @@ public class MutantSkill1State : EntitySkillState
         _enemyController.RemoveActionTrigger(ActionTriggerType.Dodge, OnDodge);
     }
 
+    private void LookPlayer()
+    {
+        var entityTransform = stateMachine.EntityController.transform;
+        var playerPos = _enemyController.playerTransform.position;
+        playerPos.y = 0;
+        entityTransform.LookAt(playerPos);
+    }
+
     private void OnMotionEvent(ActionTriggerContext ctx)
     {
         switch (ctx.AttackActionCtxNum)
         {
             case 0:
+                LookPlayer();
                 _dashDir = stateMachine.EntityController.transform.forward;
                 _isMoving = true;
                 break;
             case 1:
                 _isMoving = false;
-                break;
-            case 2:
-                _rigidbody.AddForce(_dashDir * (AttackContext.floatVariables[1]) + Vector3.up * (AttackContext.floatVariables[2]), ForceMode.Impulse);
-                break;
-            case 3:
-                _rigidbody.linearVelocity = Vector3.zero;
-                if (Physics.Raycast(_playerTransform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity,
-                        AttackContext.groundMask))
-                {
-                    _playerTransform.position = hit.point + Vector3.up * 0.2f;
-                    AttackContext = _enemyController.attackContextSO.contexts[6];
-                    
-                    _enemyController.AddActionTrigger(ActionTriggerType.Dodge, OnDodge);
-                }
                 break;
             default:
                 break;

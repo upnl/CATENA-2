@@ -24,6 +24,8 @@ public class EntityAirHitState : EntityState
         
         _context = stateMachine.EntityController.AttackContext;
 
+        _stunTimer = 0.2f;
+
         // knockback 적용
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.AddForce(_context.knockBack, ForceMode.Impulse);
@@ -37,6 +39,9 @@ public class EntityAirHitState : EntityState
     {
         base.Update();
         
+        _stunTimer -= Time.deltaTime;
+
+        if (_stunTimer > 0) return;
         if (stateMachine.EntityController.LandingDetect())
         {
             if (_context.stunTime > 0) stateMachine.ChangeState(stateMachine.EntityStunState);
