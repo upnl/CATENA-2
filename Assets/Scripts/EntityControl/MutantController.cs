@@ -8,14 +8,24 @@ using UnityEngine.InputSystem;
 public class MutantController : EnemyController
 {
     private ActionTriggerContext _actionTriggerContext;
+
+    private PartyController _partyController;
     
     protected override void Awake()
     {
         base.Awake();
         
         StateMachine = new MutantStateMachine(this);
+
+        _partyController = GameObject.FindObjectOfType<PartyController>();
+        _partyController.onCharacterChange += OnCharacterChange;
         
         _actionTriggerContext = new ActionTriggerContext {SkillNum = 1, InputActionPhase = InputActionPhase.Performed};
+    }
+
+    private void OnDestroy()
+    {
+        _partyController.onCharacterChange -= OnCharacterChange;
     }
 
 
@@ -25,7 +35,13 @@ public class MutantController : EnemyController
         
         mp += Time.deltaTime;
 
+        hp = Mathf.Clamp(hp, 0, maxHp);
+        mp = Mathf.Clamp(mp,0, maxMp);
+
         if (playerTransform == null) return;
+        
+        // death mechanism
+        if (hp < 0) Destroy(gameObject);
 
         movementInput = Vector2.up;
         var dir = (playerTransform.position - transform.position);
@@ -38,5 +54,10 @@ public class MutantController : EnemyController
             if (mp >= 20) PublishActionTrigger(ActionTriggerType.Skill, _actionTriggerContext);
             else PublishActionTrigger(ActionTriggerType.LightAttack, _actionTriggerContext);
         }
+    }
+
+    public void OnCharacterChange()
+    {
+        playerTransform = _partyController.GetCurrentCharacter();
     }
 }

@@ -25,6 +25,9 @@ public class PlayerController : EntityController
         base.Awake();
 
         StateMachine = new PlayerStateMachine(this);
+
+        hp = maxHp;
+        mp = maxMp;
         
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -44,6 +47,8 @@ public class PlayerController : EntityController
     protected override void Update()
     {
         base.Update();
+
+        if (hp < 0) Time.timeScale = 0;
         
         if (!isControllable)
         {
@@ -64,6 +69,13 @@ public class PlayerController : EntityController
         }
     }
 
+    public override bool Hit(AttackContext ctx)
+    {
+        if (!isControllable) return false;
+
+        return base.Hit(ctx);
+    }
+    
     [ContextMenu("Hit")]
     public void Hit()
     {
