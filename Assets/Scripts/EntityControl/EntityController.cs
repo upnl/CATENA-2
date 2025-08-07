@@ -40,6 +40,8 @@ public class EntityController : MonoBehaviour
     
     public float dodgeDash;
 
+    protected bool isPlayer;
+
     public AttackContextsSO attackContextSO;
 
     protected virtual void Awake()
@@ -113,8 +115,7 @@ public class EntityController : MonoBehaviour
         var actualDamage = CalculateDamage(ctx.damage);
         hp -= actualDamage;
         
-        DamageObjectSpawner.Instance.SpawnDamageObject((int)Mathf.Ceil(actualDamage), transform.position + Vector3.up);
-        
+        DamageObjectSpawner.Instance.SpawnDamageObject((int)Mathf.Ceil(actualDamage), transform.position + Vector3.up, isPlayer);
 
         return true;
     }

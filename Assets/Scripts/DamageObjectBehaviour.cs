@@ -18,8 +18,9 @@ public class DamageObjectBehaviour : MonoBehaviour
         transform.localRotation *= Quaternion.Euler(0f, 180f, 0f);
     }
 
-    public void Initialize(string damageText)
+    public void Initialize(string damageText, Color color)
     {
         text.text = damageText;
+        text.color = color;
     }
 }

@@ -5,6 +5,8 @@ public class DamageObjectSpawner : MonoBehaviour
     public static DamageObjectSpawner Instance { get; private set; }
 
     [SerializeField] private GameObject damageObjectPrefab;
+    [SerializeField] private Color playerDamageColor;
+    [SerializeField] private Color enemyDamageColor;
 
     private const int MinimumScaleDamageAmount = 5;
     private const int MaximumScaleDamageAmount = 30;
@@ -27,14 +29,12 @@ public class DamageObjectSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnDamageObject(int damageAmount, Vector3 position, Transform parent = null)
+    public void SpawnDamageObject(int damageAmount, Vector3 position, bool isPlayer = false)
     {
-        var damageObject = parent
-            ? Instantiate(damageObjectPrefab, position, Quaternion.identity, parent)
-            : Instantiate(damageObjectPrefab, position, Quaternion.identity);
+        var damageObject = Instantiate(damageObjectPrefab, position, Quaternion.identity);
 
         var damageObjectBehaviour = damageObject.GetComponent<DamageObjectBehaviour>();
-        damageObjectBehaviour.Initialize(damageAmount.ToString());
+        damageObjectBehaviour.Initialize(damageAmount.ToString(), isPlayer ? playerDamageColor : enemyDamageColor);
 
         damageObject.transform.localScale = Vector3.one * damageAmount switch
         {
