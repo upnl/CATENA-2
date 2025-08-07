@@ -60,12 +60,14 @@ public class AttackBoxDetector : MonoBehaviour
                 ctx.knockBack = Quaternion.LookRotation(
                     a.normalized, 
                     Vector3.up) * ctx.knockBack;
-                controller.Hit(ctx);
+                if (controller.Hit(ctx))
+                {
+                    hitEffect = ctx.hitEffect;
+                    var pos = result.ClosestPoint(transform.position);
 
-                hitEffect = ctx.hitEffect;
-                var pos = result.ClosestPoint(transform.position);
-                
-                if (hitEffect != null) Instantiate(hitEffect, pos, Quaternion.identity);
+                    if (hitEffect != null) Instantiate(hitEffect, pos, Quaternion.identity);
+                    DamageObjectSpawner.Instance.SpawnDamageObject((int) ctx.damage, pos);
+                }
             }
         }
     }
