@@ -66,7 +66,6 @@ public class AttackBoxDetector : MonoBehaviour
                     var pos = result.ClosestPoint(transform.position);
 
                     if (hitEffect != null) Instantiate(hitEffect, pos, Quaternion.identity);
-                    DamageObjectSpawner.Instance.SpawnDamageObject((int) ctx.damage, pos);
                 }
             }
         }

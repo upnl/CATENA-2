@@ -25,7 +25,13 @@ public class MutantController : EnemyController
         
         mp += Time.deltaTime;
 
+        hp = Mathf.Clamp(hp, 0, maxHp);
+        mp = Mathf.Clamp(mp,0, maxMp);
+
         if (playerTransform == null) return;
+        
+        // death mechanism
+        if (hp < 0) Destroy(gameObject);
 
         movementInput = Vector2.up;
         var dir = (playerTransform.position - transform.position);

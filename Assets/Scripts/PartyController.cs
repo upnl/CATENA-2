@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.Cinemachine;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,13 +14,26 @@ public class PartyController : MonoBehaviour
     private InputAction _changeAction;
     private int _currentCharacterIndex;
 
+    public float[] changeCooldowns;
+
     private void Start()
     {
         _changeAction = InputSystem.actions.FindAction("ChangeCharacter");
         
         _changeAction.SubscribeAllPhases(OnChange);
 
+        changeCooldowns = new float[playerInputProcessors.Length];
+
         _currentCharacterIndex = 0;
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i<changeCooldowns.Length; i++)
+        {
+            if (changeCooldowns[i] > 0) changeCooldowns[i] -= Time.deltaTime;
+            else changeCooldowns[i] = Mathf.Clamp(changeCooldowns[i], 0, 100);
+        }
     }
 
     public Transform GetCurrentCharacter()
@@ -33,7 +47,11 @@ public class PartyController : MonoBehaviour
         {
             int num = (int) context.ReadValue<float>();
 
+            if (changeCooldowns[_currentCharacterIndex] > 0) return;
+
             if (_currentCharacterIndex == num - 1) return;
+
+            changeCooldowns[_currentCharacterIndex] = 5f;
             
             var currentPos =  playerInputProcessors[_currentCharacterIndex].transform.position;
             
