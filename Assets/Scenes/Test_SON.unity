@@ -291,6 +291,7 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0}
   boxSize: {x: 0, y: 0, z: 0}
   showGizmos: 1
+  hitDetectTag: Player
 --- !u!114 &195564363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,21 +301,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 195564353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f578b16706f8496bbd2046e10488f296, type: 3}
+  m_Script: {fileID: 11500000, guid: c078ed96f92a41aa9557818c32a8c553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   feetPosition: {fileID: 658738139}
   landingDetectDistance: 0.2
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   movementInput: {x: 0, y: 0}
   movementSpeed: 5
   bodyRotateSpeed: 15
   dodgeDash: 0
   attackContextSO: {fileID: 11400000, guid: e4fa9cbd4db53ee4b9d70c8e630b0539, type: 2}
   cameraTransform: {fileID: 1310341783}
-  isControllable: 1
+  isControllable: 0
   disappearTimer: 0
   canAttack: 0
   normalAttackDashes: []
@@ -1383,7 +1384,7 @@ Animator:
   m_GameObject: {fileID: 460184913}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 133e09a6550c9a4429be165c297151cc, type: 3}
-  m_Controller: {fileID: 9100000, guid: cb8c19fedc92d3b43b3bd9f8b3c9227d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4b9db23876d9a224aa1bd52f3c210aa0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1516,9 +1517,12 @@ MonoBehaviour:
   bodyRotateSpeed: 0
   dodgeDash: 0
   attackContextSO: {fileID: 0}
+  playerTransform: {fileID: 0}
   normalAttackDashes:
   - 1
   - 1
+  detectDistance: 0
+  mp: 0
 --- !u!1 &658738138
 GameObject:
   m_ObjectHideFlags: 0
