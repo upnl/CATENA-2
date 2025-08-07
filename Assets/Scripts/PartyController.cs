@@ -17,6 +17,8 @@ public class PartyController : MonoBehaviour
     public Action onCharacterChange;
 
     public float[] changeCooldowns;
+    
+    public PlayerController[] playerControllers;
 
     private void Start()
     {
@@ -25,6 +27,13 @@ public class PartyController : MonoBehaviour
         _changeAction.SubscribeAllPhases(OnChange);
 
         changeCooldowns = new float[playerInputProcessors.Length];
+        playerControllers = new PlayerController[playerInputProcessors.Length];
+
+        for (int i = 0; i < playerControllers.Length; i++)
+        {
+            playerControllers[i] = playerInputProcessors[i].GetComponent<PlayerController>();
+        }
+
 
         _currentCharacterIndex = 0;
     }
@@ -42,6 +51,25 @@ public class PartyController : MonoBehaviour
     {
         return playerInputProcessors[_currentCharacterIndex].transform;
     }
+    
+    public PlayerController GetCurrentCharacterController()
+    {
+        return playerControllers[_currentCharacterIndex];
+    }
+    
+    public PlayerController GetCurrentCharacterController(int n)
+    {
+        int k = n;
+        for (int i = 0; i < playerControllers.Length; i++)
+        {
+            if (i == _currentCharacterIndex) continue;
+            if (n == 0) return playerControllers[i];
+            n--;
+        }
+
+        return null;
+    }
+
 
     private void OnChange(InputAction.CallbackContext context)
     {

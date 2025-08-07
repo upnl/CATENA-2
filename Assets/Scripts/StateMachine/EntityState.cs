@@ -50,7 +50,9 @@ public class EntityState : IState
     {
         if (context.SkillNum == 1)
         {
-            stateMachine.ChangeState(stateMachine.EntitySkill1State);
+            if (stateMachine.EntityController.mp >= context.AttackContext.mp) 
+                stateMachine.ChangeState(stateMachine.EntitySkill1State);
+
         }
     }
 }

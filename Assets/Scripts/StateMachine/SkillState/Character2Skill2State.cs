@@ -29,6 +29,8 @@ public class Character2Skill2State : EntitySkillState
         //TODO : skill2
         base.Enter();
         
+        
+        
         stateMachine.PlayAnimation("Skill2");
         _chargingTime = 0f;
         AttackContext = _playerController.attackContextSO.contexts[5];
@@ -44,6 +46,8 @@ public class Character2Skill2State : EntitySkillState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        
+        ((Character2Controller) stateMachine.EntityController).SetDamageReductionRate(0f);
 
         if (_isMoving)
         {

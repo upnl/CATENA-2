@@ -109,9 +109,12 @@ public class EntityController : MonoBehaviour
         if (ctx.knockBack.y == 0) PublishActionTrigger(ActionTriggerType.Hit, new ActionTriggerContext{ AttackContext = ctx });
         else PublishActionTrigger(ActionTriggerType.AirHit, new ActionTriggerContext{ AttackContext = ctx });
 
-        hp -= CalculateDamage(ctx.damage);
         
-        DamageObjectSpawner.Instance.SpawnDamageObject((int) ctx.damage, transform.position + Vector3.up);
+        var actualDamage = CalculateDamage(ctx.damage);
+        hp -= actualDamage;
+        
+        DamageObjectSpawner.Instance.SpawnDamageObject((int)Mathf.Ceil(actualDamage), transform.position + Vector3.up);
+        
 
         return true;
     }
