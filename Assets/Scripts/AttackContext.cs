@@ -20,4 +20,6 @@ public struct AttackContext
     public LayerMask groundMask;
 
     public GameObject hitEffect;
+    
+    public float mp;
 }

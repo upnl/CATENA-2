@@ -17,9 +17,12 @@ public class InGameUI : MonoBehaviour
     [SerializeField] private Slider ready1HpSlider;
     [SerializeField] private Image ready2IconImage;
     [SerializeField] private Slider ready2HpSlider;
+    
+    private PartyController _partyController;
 
     private void Start()
     {
+        _partyController = FindObjectOfType<PartyController>();
         /* ===== Debug Code Starts ===== */
         // InputSystem.actions.FindAction("Skill1").SubscribeAllPhases(_ =>
         // {
@@ -30,6 +33,19 @@ public class InGameUI : MonoBehaviour
         //     SetSkill2IconCooldown(1f);
         // });
         /* ===== Debug Code Ends ===== */
+    }
+    
+    private void Update()
+    {
+        hpSlider.value = _partyController.GetCurrentCharacterController().hp /
+                         _partyController.GetCurrentCharacterController().maxHp;
+        mpSlider.value = _partyController.GetCurrentCharacterController().mp /
+                         _partyController.GetCurrentCharacterController().maxMp;
+
+        ready1HpSlider.value = _partyController.GetCurrentCharacterController(0).hp /
+                               _partyController.GetCurrentCharacterController(0).maxHp;
+        ready2HpSlider.value = _partyController.GetCurrentCharacterController(1).hp /
+                               _partyController.GetCurrentCharacterController(1).maxHp;
     }
 
     public void SetHpSlider(float value)
