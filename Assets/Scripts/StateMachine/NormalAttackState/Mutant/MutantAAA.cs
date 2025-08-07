@@ -25,6 +25,8 @@ public class MutantAAA : NormalAttackState
         
         ParentStateMachine.PlayAnimation("AAA");
         
+        _rigidbody.AddForce(EntityController.LookDirection * AttackContext.floatVariables[0], ForceMode.Impulse);
+        
         CanAttack = false;
         
         var entityTransform = EntityController.transform;

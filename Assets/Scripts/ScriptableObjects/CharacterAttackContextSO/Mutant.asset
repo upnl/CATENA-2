@@ -19,30 +19,37 @@ MonoBehaviour:
     stunTime: 0
     boxOffset: {x: 0, y: 0, z: 0.6}
     boxSize: {x: 0.5, y: 0.7, z: 0.8}
-    floatVariables: []
+    floatVariables:
+    - 3
+    - 0
     groundMask:
       serializedVersion: 2
       m_Bits: 0
+    hitEffect: {fileID: 6982263153641847612, guid: b3ff4e69183979e4eb486e70828d6d90, type: 3}
   - knockBack: {x: 0, y: 0, z: 1}
     isIgnoringDodge: 0
     damage: 5
     stunTime: 0
     boxOffset: {x: 0, y: 0, z: 0.6}
     boxSize: {x: 0.5, y: 0.7, z: 0.8}
-    floatVariables: []
+    floatVariables:
+    - 3
     groundMask:
       serializedVersion: 2
       m_Bits: 0
+    hitEffect: {fileID: 6982263153641847612, guid: b3ff4e69183979e4eb486e70828d6d90, type: 3}
   - knockBack: {x: 0, y: 3, z: 3}
     isIgnoringDodge: 0
     damage: 15
     stunTime: 1
     boxOffset: {x: 0, y: 0, z: 1.5}
     boxSize: {x: 0.5, y: 0.7, z: 0.8}
-    floatVariables: []
+    floatVariables:
+    - 3
     groundMask:
       serializedVersion: 2
       m_Bits: 0
+    hitEffect: {fileID: 1835355836541019294, guid: 6ff0017d978570643a11b31efe5d0bfb, type: 3}
   - knockBack: {x: 0, y: 0, z: 3}
     isIgnoringDodge: 1
     damage: 0
@@ -53,6 +60,7 @@ MonoBehaviour:
     groundMask:
       serializedVersion: 2
       m_Bits: 0
+    hitEffect: {fileID: 0}
   - knockBack: {x: 0, y: 5, z: 2}
     isIgnoringDodge: 1
     damage: 0
@@ -63,6 +71,7 @@ MonoBehaviour:
     groundMask:
       serializedVersion: 2
       m_Bits: 0
+    hitEffect: {fileID: 0}
   - knockBack: {x: 0, y: 0, z: 3}
     isIgnoringDodge: 0
     damage: 15
@@ -70,12 +79,13 @@ MonoBehaviour:
     boxOffset: {x: 0, y: 0, z: 0.5}
     boxSize: {x: 1, y: 3, z: 0.8}
     floatVariables:
-    - 2
+    - 5
     - 2
     - 6
     groundMask:
       serializedVersion: 2
       m_Bits: 8
+    hitEffect: {fileID: 6982263153641847612, guid: b3ff4e69183979e4eb486e70828d6d90, type: 3}
   - knockBack: {x: 0, y: 4, z: -3}
     isIgnoringDodge: 1
     damage: 0
@@ -86,3 +96,4 @@ MonoBehaviour:
     groundMask:
       serializedVersion: 2
       m_Bits: 0
+    hitEffect: {fileID: 0}
