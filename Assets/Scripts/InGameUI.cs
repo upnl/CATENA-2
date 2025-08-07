@@ -1,16 +1,24 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Slider hpSlider;
+    [SerializeField] private Slider mpSlider;
+    [SerializeField] private Image currentIconImage;
+
+    public void SetHpSlider(float value)
     {
-        
+        hpSlider.value = value;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMpSlider(float value)
     {
-        
+        mpSlider.value = value;
+    }
+
+    public void SetCurrentIcon(Sprite icon)
+    {
+        currentIconImage.sprite = icon;
     }
 }
