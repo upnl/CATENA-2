@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class MutantSkill1State : EntitySkillState
 {
     private Rigidbody _rigidbody;
-    private PlayerController _playerController;
+    private EnemyController _enemyController;
     
     private Transform _playerTransform;
 
@@ -16,11 +16,11 @@ public class MutantSkill1State : EntitySkillState
     public MutantSkill1State(EntityStateMachine entityStateMachine) : base(entityStateMachine)
     {
         _rigidbody = stateMachine.EntityController.GetComponent<Rigidbody>();
-        _playerController = stateMachine.EntityController as PlayerController;
+        _enemyController = stateMachine.EntityController as EnemyController;
 
-        _playerTransform = _playerController.transform;
+        _playerTransform = _enemyController.transform;
 
-        AttackContext = _playerController.attackContextSO.contexts[5];
+        AttackContext = _enemyController.attackContextSO.contexts[5];
     }
     
     public override void Enter()
@@ -29,9 +29,9 @@ public class MutantSkill1State : EntitySkillState
         
         stateMachine.PlayAnimation("Skill1");
         
-        AttackContext = _playerController.attackContextSO.contexts[5];
+        AttackContext = _enemyController.attackContextSO.contexts[5];
         
-        _playerController.AddActionTrigger(ActionTriggerType.MotionEvent, OnMotionEvent);
+        _enemyController.AddActionTrigger(ActionTriggerType.MotionEvent, OnMotionEvent);
     }
 
     public override void Update()
@@ -54,8 +54,8 @@ public class MutantSkill1State : EntitySkillState
     {
         base.Exit();
         
-        _playerController.RemoveActionTrigger(ActionTriggerType.MotionEvent, OnMotionEvent);
-        _playerController.RemoveActionTrigger(ActionTriggerType.Dodge, OnDodge);
+        _enemyController.RemoveActionTrigger(ActionTriggerType.MotionEvent, OnMotionEvent);
+        _enemyController.RemoveActionTrigger(ActionTriggerType.Dodge, OnDodge);
     }
 
     private void OnMotionEvent(ActionTriggerContext ctx)
@@ -78,9 +78,9 @@ public class MutantSkill1State : EntitySkillState
                         AttackContext.groundMask))
                 {
                     _playerTransform.position = hit.point + Vector3.up * 0.2f;
-                    AttackContext = _playerController.attackContextSO.contexts[6];
+                    AttackContext = _enemyController.attackContextSO.contexts[6];
                     
-                    _playerController.AddActionTrigger(ActionTriggerType.Dodge, OnDodge);
+                    _enemyController.AddActionTrigger(ActionTriggerType.Dodge, OnDodge);
                 }
                 break;
             default:

@@ -7,6 +7,8 @@ namespace StateMachine
         public MutantStateMachine(EntityController entityController) : base(entityController)
         {
             EntityNormalAttackState = new MutantNormalAttackState(this);
+            
+            EntitySkill1State = new MutantSkill1State(this);
         }
     }
 }

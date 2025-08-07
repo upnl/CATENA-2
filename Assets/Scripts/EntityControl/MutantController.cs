@@ -28,10 +28,14 @@ public class MutantController : EnemyController
         if (playerTransform == null) return;
 
         movementInput = Vector2.up;
+        var dir = (playerTransform.position - transform.position);
+        dir.y = 0;
+        
+        LookDirection = dir.normalized; 
         
         if (Vector3.Distance(playerTransform.position, transform.position) < detectDistance)
         {
-            PublishActionTrigger(ActionTriggerType.LightAttack, _actionTriggerContext);
+            PublishActionTrigger(ActionTriggerType.Skill, _actionTriggerContext);
         }
     }
 }
