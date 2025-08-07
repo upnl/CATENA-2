@@ -316,6 +316,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
+  hp: 0
+  mp: 0
+  maxHp: 150
+  maxMp: 100
   movementSpeed: 3
   bodyRotateSpeed: 15
   dodgeDash: 5
@@ -2009,6 +2013,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
+  hp: 0
+  mp: 0
+  maxHp: 0
+  maxMp: 0
   movementSpeed: 0
   bodyRotateSpeed: 0
   dodgeDash: 0
@@ -2018,7 +2026,6 @@ MonoBehaviour:
   - 1
   - 1
   detectDistance: 0
-  mp: 0
 --- !u!4 &729116414 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 133e09a6550c9a4429be165c297151cc, type: 3}
@@ -2615,6 +2622,7 @@ MonoBehaviour:
   - {fileID: 1697820989}
   - {fileID: 2043947183}
   cinemachineCamera: {fileID: 1310341782}
+  changeCooldowns: []
 --- !u!1 &1184243903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3956,6 +3964,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
+  hp: 0
+  mp: 0
+  maxHp: 0
+  maxMp: 0
   movementSpeed: 0
   bodyRotateSpeed: 0
   dodgeDash: 0
@@ -3965,7 +3977,6 @@ MonoBehaviour:
   - 1
   - 1
   detectDistance: 0
-  mp: 0
 --- !u!54 &1324982033
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4169,6 +4180,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
+  hp: 0
+  mp: 0
+  maxHp: 150
+  maxMp: 30
   movementSpeed: 3
   bodyRotateSpeed: 15
   dodgeDash: 5
@@ -4177,7 +4192,6 @@ MonoBehaviour:
   normalAttackDashes:
   - 0
   detectDistance: 3
-  mp: 0
 --- !u!114 &1537719984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4423,6 +4437,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
+  hp: 0
+  mp: 0
+  maxHp: 0
+  maxMp: 0
   movementSpeed: 0
   bodyRotateSpeed: 0
   dodgeDash: 0
@@ -4432,7 +4450,6 @@ MonoBehaviour:
   - 1
   - 1
   detectDistance: 0
-  mp: 0
 --- !u!54 &1657487858
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4668,6 +4685,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
+  hp: 0
+  mp: 0
+  maxHp: 0
+  maxMp: 0
   movementSpeed: 0
   bodyRotateSpeed: 0
   dodgeDash: 0
@@ -4677,7 +4698,6 @@ MonoBehaviour:
   - 1
   - 1
   detectDistance: 0
-  mp: 0
 --- !u!54 &1692982098
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4862,6 +4882,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
+  hp: 0
+  mp: 0
+  maxHp: 150
+  maxMp: 30
   movementSpeed: 4
   bodyRotateSpeed: 15
   dodgeDash: 5
@@ -4873,6 +4897,7 @@ MonoBehaviour:
   normalAttackDashes:
   - 3
   - 2
+  damageReductionRate: 0
 --- !u!136 &1697820991
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6484,6 +6509,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
+  hp: 0
+  mp: 0
+  maxHp: 200
+  maxMp: 50
   movementSpeed: 3
   bodyRotateSpeed: 15
   dodgeDash: 5

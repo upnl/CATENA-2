@@ -47,7 +47,7 @@ public class PartyController : MonoBehaviour
         {
             int num = (int) context.ReadValue<float>();
 
-            if (changeCooldowns[_currentCharacterIndex] > 0) return;
+            if (changeCooldowns[num - 1] > 0) return;
 
             if (_currentCharacterIndex == num - 1) return;
 
