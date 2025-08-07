@@ -114,6 +114,9 @@ public class EntityController : MonoBehaviour
         
         var actualDamage = CalculateDamage(ctx.damage);
         hp -= actualDamage;
+
+        if (ctx.stunTime == 0) SoundManager.instance.PlaySound(SoundType.Hit, 4);
+        else SoundManager.instance.PlaySound(SoundType.Stun);
         
         DamageObjectSpawner.Instance.SpawnDamageObject((int)Mathf.Ceil(actualDamage), transform.position + Vector3.up, isPlayer);
 
