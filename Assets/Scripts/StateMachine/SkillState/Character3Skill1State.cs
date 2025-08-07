@@ -57,6 +57,9 @@ public class Character3Skill1State : EntitySkillState
         _rigidbody.AddForce(-1*_forceDirToApply*_rigidbody.linearVelocity.magnitude*1.5f, ForceMode.Impulse);
         
         stateMachine.ChangeState(stateMachine.EntityIdleState);
+
+        AttackContext.damage *= Mathf.Clamp(_rigidbody.linearVelocity.magnitude / 3f, 0.2f, 2f);
+        AttackContext.knockBack *= Mathf.Clamp(_rigidbody.linearVelocity.magnitude, 0f, 1f);
         BoxDetector.Attack(AttackContext);
     }
 

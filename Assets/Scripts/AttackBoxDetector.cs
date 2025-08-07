@@ -12,7 +12,17 @@ public class AttackBoxDetector : MonoBehaviour
     public bool showGizmos = true;
 
     public string hitDetectTag = "Player";
-    
+    public int comboCount = 0;
+    public float comboTimer = 3f;
+    public float comboTimerElapsed;
+
+    private void Update()
+    {
+        comboTimerElapsed -= Time.deltaTime;
+
+        if (comboTimerElapsed <= 0) comboCount = 0;
+    }
+
     private void OnDrawGizmos()
     {
         if (!showGizmos) return;
@@ -64,6 +74,9 @@ public class AttackBoxDetector : MonoBehaviour
                 {
                     hitEffect = ctx.hitEffect;
                     var pos = result.ClosestPoint(transform.position);
+                    
+                    comboCount += 1;
+                    comboTimerElapsed = comboTimer;
 
                     if (hitEffect != null) Instantiate(hitEffect, pos, Quaternion.identity);
                 }
