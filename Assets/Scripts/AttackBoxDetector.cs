@@ -62,6 +62,7 @@ public class AttackBoxDetector : MonoBehaviour
                     Vector3.up) * ctx.knockBack;
                 controller.Hit(ctx);
 
+                hitEffect = ctx.hitEffect;
                 var pos = result.ClosestPoint(transform.position);
                 
                 if (hitEffect != null) Instantiate(hitEffect, pos, Quaternion.identity);
