@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdbc259136074b6485b2eeb024f5fcaa, type: 3}
+  m_Name: Character1
+  m_EditorClassIdentifier: 
+  contexts:
+  - knockBack: {x: 0, y: 3, z: 1}
+    isIgnoringDodge: 0
+    damage: 5
+    stunTime: 0
+    boxOffset: {x: 0, y: 0, z: 0.6}
+    boxSize: {x: 0.5, y: 0.7, z: 0.8}
+    floatVariables: []
+    groundMask:
+      serializedVersion: 2
+      m_Bits: 0
+  - knockBack: {x: 0, y: 3, z: 1}
+    isIgnoringDodge: 0
+    damage: 5
+    stunTime: 0
+    boxOffset: {x: 0, y: 0, z: 0.6}
+    boxSize: {x: 0.5, y: 0.7, z: 0.8}
+    floatVariables: []
+    groundMask:
+      serializedVersion: 2
+      m_Bits: 0
+  - knockBack: {x: 0, y: 0, z: 3}
+    isIgnoringDodge: 0
+    damage: 15
+    stunTime: 1
+    boxOffset: {x: 0, y: 0, z: 1.5}
+    boxSize: {x: 0.5, y: 0.7, z: 0.8}
+    floatVariables: []
+    groundMask:
+      serializedVersion: 2
+      m_Bits: 0
+  - knockBack: {x: 0, y: 6, z: 0}
+    isIgnoringDodge: 1
+    damage: 0
+    stunTime: 0
+    boxOffset: {x: 0, y: 0, z: 0.5}
+    boxSize: {x: 1, y: 0.7, z: 0.8}
+    floatVariables: []
+    groundMask:
+      serializedVersion: 2
+      m_Bits: 0
+  - knockBack: {x: 0, y: 5, z: 2}
+    isIgnoringDodge: 1
+    damage: 0
+    stunTime: 0
+    boxOffset: {x: 0, y: 0, z: 0.5}
+    boxSize: {x: 1, y: 0.7, z: 0.8}
+    floatVariables: []
+    groundMask:
+      serializedVersion: 2
+      m_Bits: 0
+  - knockBack: {x: 0, y: 5, z: 2}
+    isIgnoringDodge: 0
+    damage: 0
+    stunTime: 0
+    boxOffset: {x: 0, y: 0, z: 0.5}
+    boxSize: {x: 1, y: 3, z: 0.8}
+    floatVariables:
+    - 2
+    - 2
+    - 6
+    groundMask:
+      serializedVersion: 2
+      m_Bits: 8
+  - knockBack: {x: 0, y: 4, z: -3}
+    isIgnoringDodge: 1
+    damage: 0
+    stunTime: 0
+    boxOffset: {x: 0, y: 3, z: 0.5}
+    boxSize: {x: 3, y: 10, z: 1}
+    floatVariables: []
+    groundMask:
+      serializedVersion: 2
+      m_Bits: 0

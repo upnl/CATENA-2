@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerAnimationEventReceiver : MonoBehaviour
 {
-    public PlayerController playerController;
+    public EntityController playerController;
 
     
     //TODO: 고쳐야 함
