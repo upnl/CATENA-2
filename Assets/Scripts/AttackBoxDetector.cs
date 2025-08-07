@@ -10,6 +10,8 @@ public class AttackBoxDetector : MonoBehaviour
     public Vector3 boxSize;
 
     public bool showGizmos = true;
+
+    public string hitDetectTag = "Player";
     
     private void OnDrawGizmos()
     {
@@ -48,7 +50,7 @@ public class AttackBoxDetector : MonoBehaviour
         foreach (var result in results)
         {
             if (result == null) continue;
-            if (result.gameObject == gameObject || result.CompareTag("Player")) continue;
+            if (result.gameObject == gameObject || result.CompareTag(hitDetectTag)) continue;
             
             if (result.TryGetComponent<EntityController>(out var controller))
             {
