@@ -3215,11 +3215,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b8f9f1e1daa324984f9bd8b2fe663d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagEffect: {fileID: 358637981425055526, guid: 8ad2ce0f228193a4b99d1d6766c4a907, type: 3}
   playerInputProcessors:
   - {fileID: 195564354}
   - {fileID: 1852640006}
   cinemachineCamera: {fileID: 1310341782}
   changeCooldowns: []
+  playerControllers: []
 --- !u!4 &1198670122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6412554938960305543, guid: d802e211c8009f844a986b44cac1947d, type: 3}
