@@ -22,6 +22,11 @@ public class PartyController : MonoBehaviour
         _currentCharacterIndex = 0;
     }
 
+    public Transform GetCurrentCharacter()
+    {
+        return playerInputProcessors[_currentCharacterIndex].transform;
+    }
+
     private void OnChange(InputAction.CallbackContext context)
     {
         if (context.performed)

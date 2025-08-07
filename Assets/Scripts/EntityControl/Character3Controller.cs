@@ -15,7 +15,7 @@ public class Character3Controller : PlayerController
     private void OnCollisionEnter(Collision other)
     {
         //TODO : Made HitBox
-        onCollisionEvent.Invoke();
+        if (onCollisionEvent != null) onCollisionEvent.Invoke();
         
     }
 }
