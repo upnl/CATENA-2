@@ -309,6 +309,9 @@ MonoBehaviour:
   boxSize: {x: 0.5, y: 0.73, z: 0.82}
   showGizmos: 1
   hitDetectTag: Player
+  comboCount: 0
+  comboTimer: 3
+  comboTimerElapsed: 0
 --- !u!114 &195564363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +330,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
-  hp: 0
+  hp: 100
   mp: 0
   maxHp: 100
   maxMp: 100
@@ -4441,6 +4444,9 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   showGizmos: 1
   hitDetectTag: Enemy
+  comboCount: 0
+  comboTimer: 3
+  comboTimerElapsed: 0
 --- !u!114 &1419031523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4782,7 +4788,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
-  hp: 0
+  hp: 300
   mp: 0
   maxHp: 300
   maxMp: 30
@@ -4812,6 +4818,9 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   showGizmos: 1
   hitDetectTag: Enemy
+  comboCount: 0
+  comboTimer: 3
+  comboTimerElapsed: 0
 --- !u!1001 &1565701640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5566,6 +5575,9 @@ MonoBehaviour:
   boxSize: {x: 0.5, y: 0.73, z: 0.82}
   showGizmos: 1
   hitDetectTag: Player
+  comboCount: 0
+  comboTimer: 3
+  comboTimerElapsed: 0
 --- !u!114 &1697820989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5597,7 +5609,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
-  hp: 0
+  hp: 80
   mp: 0
   maxHp: 80
   maxMp: 30
@@ -7250,6 +7262,9 @@ MonoBehaviour:
   boxSize: {x: 0.5, y: 0.73, z: 0.82}
   showGizmos: 1
   hitDetectTag: Player
+  comboCount: 0
+  comboTimer: 3
+  comboTimerElapsed: 0
 --- !u!114 &2043947183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7281,7 +7296,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   movementInput: {x: 0, y: 0}
-  hp: 0
+  hp: 150
   mp: 0
   maxHp: 150
   maxMp: 50
