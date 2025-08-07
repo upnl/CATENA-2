@@ -28,6 +28,8 @@ public class Character2Skill1State : EntitySkillState
     {
         base.Enter();
         
+        ((Character2Controller) stateMachine.EntityController).SetDamageReductionRate(0.8f);
+        
         stateMachine.PlayAnimation("Skill1");
         _chargingTime = 0f;
         AttackContext = _playerController.attackContextSO.contexts[5];
@@ -55,6 +57,8 @@ public class Character2Skill1State : EntitySkillState
     public override void Exit()
     {
         base.Exit();
+        
+        ((Character2Controller) stateMachine.EntityController).SetDamageReductionRate(0f);
         
         _playerController.RemoveActionTrigger(ActionTriggerType.Skill, OnCharging);
     }
