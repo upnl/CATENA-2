@@ -66,7 +66,7 @@ public class MutantController : EnemyController
         Transform tempTransform = _partyController.GetCurrentCharacter();
         tempTransform.position = new Vector3(tempTransform.position.x, 0,  tempTransform.position.z);
         Vector3 targetDir = Quaternion.Euler(0, 90f, 0) * (feetPosition.position - tempTransform.position);
-        tempTransform.position = Vector3.Normalize(targetDir) * 3.5f + feetPosition.position;
+        tempTransform.position = Vector3.Normalize(targetDir) * 2.5f + feetPosition.position;
         tempTransform.position = new Vector3(tempTransform.position.x, 1, tempTransform.position.z);
         
         playerTransform = tempTransform;
