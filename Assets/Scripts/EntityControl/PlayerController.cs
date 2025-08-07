@@ -57,7 +57,7 @@ public class PlayerController : EntityController
             Time.timeScale = 0;
         }
 
-        mp += Time.deltaTime;
+        mp += Time.deltaTime * 3f;
         mp = Mathf.Clamp(mp, 0f, maxMp);
         
         if (!isControllable)
