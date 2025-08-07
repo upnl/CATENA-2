@@ -8,7 +8,7 @@ namespace StateMachine
         {
             EntityNormalAttackState = new Character3NormalAttackState(this);
             
-            // EntitySkill1State = new Character2Skill1State(this);
+            EntitySkill1State = new Character3Skill1State(this);
         }
     }
 }

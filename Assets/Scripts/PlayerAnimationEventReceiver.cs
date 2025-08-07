@@ -1,6 +1,4 @@
 using PlayerControl;
-using StateMachine;
-using UnityEditor.Searcher;
 using UnityEngine;
 
 public class PlayerAnimationEventReceiver : MonoBehaviour
