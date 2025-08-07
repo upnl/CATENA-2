@@ -82,8 +82,8 @@ public class PartyController : MonoBehaviour
             if (_currentCharacterIndex == num - 1) return;
 
             changeCooldowns[_currentCharacterIndex] = 5f;
-            
-            var currentPos =  playerInputProcessors[_currentCharacterIndex].transform.position;
+
+            var currentPos = playerInputProcessors[_currentCharacterIndex].transform.position;
             
             playerInputProcessors[_currentCharacterIndex].UnsubscribeAllPhases();
             _currentCharacterIndex = num - 1;
@@ -104,7 +104,7 @@ public class PartyController : MonoBehaviour
         Time.timeScale = 0.5f;
         Time.fixedDeltaTime *= 0.5f;
 
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.3f);
         
         Time.timeScale = 1f;
         Time.fixedDeltaTime *= 2f;

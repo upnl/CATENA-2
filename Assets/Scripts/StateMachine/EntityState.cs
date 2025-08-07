@@ -1,6 +1,7 @@
 ﻿using PlayerControl;
 using UnityEngine;
 using StateMachine;
+using UnityEngine.InputSystem;
 
 public class EntityState : IState
 {
@@ -48,7 +49,7 @@ public class EntityState : IState
 
     protected void OnSkill(ActionTriggerContext context)
     {
-        if (context.SkillNum == 1)
+        if (context.SkillNum == 1 && context.InputActionPhase != InputActionPhase.Canceled)
         {
             if (stateMachine.EntityController.mp >= context.AttackContext.mp) 
                 stateMachine.ChangeState(stateMachine.EntitySkill1State);

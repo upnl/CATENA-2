@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
@@ -46,6 +47,11 @@ public class InGameUI : MonoBehaviour
                                _partyController.GetCurrentCharacterController(0).maxHp;
         ready2HpSlider.value = _partyController.GetCurrentCharacterController(1).hp /
                                _partyController.GetCurrentCharacterController(1).maxHp;
+    }
+
+    public void OnReset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void SetHpSlider(float value)
