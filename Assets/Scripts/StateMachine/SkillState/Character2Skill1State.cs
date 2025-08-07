@@ -98,20 +98,21 @@ public class Character2Skill1State : EntitySkillState
                 {
                     case < 1.0f:
                         stateMachine.PlayAnimation("Skill1-1");
-                        Debug.Log("Skill1-1 performed");
+                        // Debug.Log("Skill1-1 performed");
                         break;
                     case < 2.0f :
                         stateMachine.PlayAnimation("Skill1-2");
-                        Debug.Log("Skill1-2 performed");
+                        // Debug.Log("Skill1-2 performed");
                         break;
                     case < 3.0f :
                         stateMachine.PlayAnimation("Skill1-3");
-                        Debug.Log("Skill1-3 performed");
+                        // Debug.Log("Skill1-3 performed");
                         break;
                     default:
                         stateMachine.ChangeState(stateMachine.EntityIdleState);
-                        break;
+                        break; 
                 }
+                _playerController.RemoveActionTrigger(ActionTriggerType.Skill, OnCharging);
                 break;
             default:
                 break;
