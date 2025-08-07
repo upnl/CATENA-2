@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Unity.Cinemachine;
-using UnityEditor.AssetImporters;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,8 +18,13 @@ public class PartyController : MonoBehaviour
     public Action onCharacterChange;
 
     public float[] changeCooldowns;
+
+    public int comboCount;
+    public float comboElapsed;
     
     public PlayerController[] playerControllers;
+
+    public InGameUI inGameUI;
 
     private void Start()
     {
@@ -42,11 +46,20 @@ public class PartyController : MonoBehaviour
 
     private void Update()
     {
+        comboElapsed -= Time.deltaTime;
+        if (comboElapsed < 0) comboCount = 0;
+        
         for (int i = 0; i<changeCooldowns.Length; i++)
         {
             if (changeCooldowns[i] > 0) changeCooldowns[i] -= Time.deltaTime;
             else changeCooldowns[i] = Mathf.Clamp(changeCooldowns[i], 0, 100);
         }
+    }
+
+    public void ComboUp()
+    {
+        comboCount++;
+        inGameUI.ShowComboPopup(comboCount);
     }
 
     public Transform GetCurrentCharacter()

@@ -15,6 +15,13 @@ public class AttackBoxDetector : MonoBehaviour
     public int comboCount = 0;
     public float comboTimer = 3f;
     public float comboTimerElapsed;
+    
+    private PartyController _partyController;
+
+    private void Start()
+    {
+        _partyController = FindObjectOfType<PartyController>();
+    }
 
     private void Update()
     {
@@ -75,8 +82,7 @@ public class AttackBoxDetector : MonoBehaviour
                     hitEffect = ctx.hitEffect;
                     var pos = result.ClosestPoint(transform.position);
                     
-                    comboCount += 1;
-                    comboTimerElapsed = comboTimer;
+                    _partyController.ComboUp();
 
                     if (hitEffect != null) Instantiate(hitEffect, pos, Quaternion.identity);
                 }
