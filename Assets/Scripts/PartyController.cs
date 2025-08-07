@@ -83,8 +83,7 @@ public class PartyController : MonoBehaviour
 
             changeCooldowns[_currentCharacterIndex] = 5f;
 
-            var currentPos = playerInputProcessors[_currentCharacterIndex].transform.position
-                             + playerInputProcessors[_currentCharacterIndex].transform.forward * (-2f);
+            var currentPos = playerInputProcessors[_currentCharacterIndex].transform.position;
             
             playerInputProcessors[_currentCharacterIndex].UnsubscribeAllPhases();
             _currentCharacterIndex = num - 1;
