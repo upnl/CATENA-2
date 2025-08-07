@@ -26,6 +26,8 @@ public class PlayerController : EntityController
 
         StateMachine = new PlayerStateMachine(this);
 
+        isPlayer = true;
+
         hp = maxHp;
         mp = maxMp;
         
