@@ -1,6 +1,9 @@
-﻿using PlayerControl;
+﻿using System;
+using System.Collections;
+using PlayerControl;
 using UnityEngine;
 using StateMachine;
+using UnityEditor.Searcher;
 using UnityEngine.InputSystem;
 
 public class Character3Skill1State : EntitySkillState
@@ -12,8 +15,13 @@ public class Character3Skill1State : EntitySkillState
     private Transform _playerTransform;
 
     private bool _isMoving;
-    private float _chargingTime;
+    private bool _isApplyingForce;
+    private float _forceApplyTimer = 0f;
+    private float _forceApplyDuration = 2.5f;  //TODO : change this fucking hard value to dynamic value
+    private Vector3 _forceDirToApply;
+    private Action Dashing;
     private Vector3 _dashDir;
+    
     
     public Character3Skill1State(EntityStateMachine entityStateMachine) : base(entityStateMachine)
     {
@@ -31,23 +39,30 @@ public class Character3Skill1State : EntitySkillState
         base.Enter();
         
         stateMachine.PlayAnimation("Skill1");
-        _chargingTime = 0f;
         AttackContext = _playerController.attackContextSO.contexts[5];
 
+        _isMoving = true;
+        _isApplyingForce = false;
+        _forceApplyTimer = 0f;
         _controller.onCollisionEvent += OnCollision;
         
         _playerController.AddActionTrigger(ActionTriggerType.MotionEvent, OnMotionEvent);
+        _playerController.AddActionTrigger(ActionTriggerType.Dodge, OnDodge);
     }
 
     private void OnCollision()
     {
+        Debug.Log("Collision Detected!!!!!!!!!!!!!!!!");
+        _isApplyingForce = false;
+        _rigidbody.AddForce(-1*_forceDirToApply*_rigidbody.linearVelocity.magnitude*1.5f, ForceMode.Impulse);
+        
+        stateMachine.ChangeState(stateMachine.EntityIdleState);
         BoxDetector.Attack(AttackContext);
     }
 
     public override void Update()
     {
         base.Update();
-        _chargingTime += Time.deltaTime;
     }
 
     public override void PhysicsUpdate()
@@ -59,6 +74,22 @@ public class Character3Skill1State : EntitySkillState
             _rigidbody.MovePosition(stateMachine.EntityController.transform.position +
                                     _dashDir * (AttackContext.floatVariables[0] * Time.fixedDeltaTime));
         }
+
+        if (_isApplyingForce)
+        {
+            if (_forceApplyTimer < _forceApplyDuration)
+            {
+                _rigidbody.AddForce(_forceDirToApply*9.8f, ForceMode.Force);   //TODO : change this fucking hard code
+                _forceApplyTimer += Time.fixedDeltaTime;
+                
+            }
+            else
+            {
+                _isApplyingForce = false;
+                _rigidbody.linearVelocity = Vector3.zero;
+                stateMachine.ChangeState(stateMachine.EntityIdleState);
+            }
+        }
     }
 
     public override void Exit()
@@ -67,6 +98,7 @@ public class Character3Skill1State : EntitySkillState
         
         _controller.onCollisionEvent -= OnCollision;
         _playerController.RemoveActionTrigger(ActionTriggerType.MotionEvent, OnMotionEvent);
+        _playerController.RemoveActionTrigger(ActionTriggerType.Dodge, OnDodge);
     }
     
     private void OnMotionEvent(ActionTriggerContext ctx)
@@ -74,17 +106,17 @@ public class Character3Skill1State : EntitySkillState
         switch (ctx.AttackActionCtxNum)
         {
             case 0:
-                _dashDir = stateMachine.EntityController.transform.forward;
-                _isMoving = true;
+                _forceDirToApply = stateMachine.EntityController.transform.forward;
+                _isMoving = false;
                 break;
             case 1:
-                _rigidbody.AddForce(_dashDir * (AttackContext.floatVariables[1])* (AttackContext.floatVariables[2]), ForceMode.Impulse);
+                _isApplyingForce = true;
                 break;
-            case 2:
-                _rigidbody.linearVelocity = Vector3.zero;
+            default:
                 break;
         }
     }
+    
     
     private void OnDodge(ActionTriggerContext context)
     {
