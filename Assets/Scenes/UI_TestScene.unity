@@ -4405,6 +4405,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2865495268324722778, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2865495268324722778, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804842246441748336, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804842246441748336, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5447224234963324084, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4485,6 +4501,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6016085107553416595, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016085107553416595, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6349926648652551230, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4493,10 +4517,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6514311604208381034, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6514311604208381034, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7050281306675358201, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
       propertyPath: m_Name
       value: InGameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7238117592254784861, guid: 23ea042d8db2343c0a11dd0551a9e802, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c3b7b7fa1621e44e0b0a36e0007b5d62, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
