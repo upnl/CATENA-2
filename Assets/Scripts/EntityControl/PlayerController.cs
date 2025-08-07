@@ -50,7 +50,12 @@ public class PlayerController : EntityController
     {
         base.Update();
 
-        if (hp < 0) Time.timeScale = 0;
+        if (hp < 0)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0;
+        }
         
         if (!isControllable)
         {

@@ -70,10 +70,12 @@ public class Character1Skill1State : EntitySkillState
                 _isMoving = false;
                 break;
             case 2:
+                SoundManager.instance.PlaySound(SoundType.SwordSkill);
                 _rigidbody.AddForce(_dashDir * (AttackContext.floatVariables[1]) + Vector3.up * (AttackContext.floatVariables[2]), ForceMode.Impulse);
                 break;
             case 3:
                 _rigidbody.linearVelocity = Vector3.zero;
+                SoundManager.instance.PlaySound(SoundType.ShieldSkill);
                 if (Physics.Raycast(_playerTransform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity,
                         AttackContext.groundMask))
                 {

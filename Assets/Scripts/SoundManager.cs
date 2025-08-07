@@ -16,7 +16,7 @@ public enum SoundType //넣을 소리 종류
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private SoundList[] soundList;
-    private static SoundManager instance;
+    public static SoundManager instance;
     private AudioSource audioSource;
 
     private void Awake()
@@ -29,7 +29,7 @@ public class SoundManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public static void PlaySound(SoundType sound, float volume = 1) //이거 쓰면 됨 ^^
+    public void PlaySound(SoundType sound, float volume = 1) //이거 쓰면 됨 ^^
     {
         AudioClip[] clips = instance.soundList[(int)sound].Sounds;
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
