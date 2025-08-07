@@ -6,6 +6,8 @@ public class DamageObjectSpawner : MonoBehaviour
 
     [SerializeField] private GameObject damageObjectPrefab;
 
+    public float damageObjectDefaultLifeTime = 1f;
+
     private void OnEnable()
     {
         if (Instance != this)
@@ -27,7 +29,10 @@ public class DamageObjectSpawner : MonoBehaviour
         var damageObject = parent
             ? Instantiate(damageObjectPrefab, position, Quaternion.identity, parent)
             : Instantiate(damageObjectPrefab, position, Quaternion.identity);
-        
+
+        var damageObjectBehaviour = damageObject.GetComponent<DamageObjectBehaviour>();
+        damageObjectBehaviour.Initialize(damageAmount.ToString(), damageObjectDefaultLifeTime);
+
         // TODO
     }
 }
