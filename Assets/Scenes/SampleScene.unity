@@ -2783,6 +2783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b8f9f1e1daa324984f9bd8b2fe663d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagEffect: {fileID: 358637981425055526, guid: 8ad2ce0f228193a4b99d1d6766c4a907, type: 3}
   playerInputProcessors:
   - {fileID: 195564354}
   - {fileID: 1697820989}
