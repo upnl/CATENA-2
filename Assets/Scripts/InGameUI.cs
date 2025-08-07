@@ -71,6 +71,7 @@ public class InGameUI : MonoBehaviour
         skillIcon.fillAmount = 1f;
     }
 
+    #pragma warning disable CS0162  // TODO: remove this later
     public void SetSkill1IconCooldown(float cooldown)
     {
         if (false) // TODO: Check if skillIconImage is in cooldown
@@ -90,4 +91,5 @@ public class InGameUI : MonoBehaviour
 
         StartCoroutine(SkillCooldownCoroutine(skill2IconImage, cooldown));
     }
+    #pragma warning restore CS0162  // TODO: remove this later
 }
