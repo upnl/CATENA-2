@@ -27,9 +27,10 @@ public class MutantController : EnemyController
 
         if (playerTransform == null) return;
 
+        movementInput = Vector2.up;
+        
         if (Vector3.Distance(playerTransform.position, transform.position) < detectDistance)
         {
-            Debug.Log("HERE?");
             PublishActionTrigger(ActionTriggerType.LightAttack, _actionTriggerContext);
         }
     }
