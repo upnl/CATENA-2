@@ -11,7 +11,7 @@ public class EnemyController : EntityController
     
     public float detectDistance;
     
-    public float mp;
+    
     
     protected override void Awake()
     {

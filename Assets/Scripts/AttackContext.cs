@@ -18,4 +18,6 @@ public struct AttackContext
     public float[] floatVariables;
 
     public LayerMask groundMask;
+
+    public GameObject hitEffect;
 }

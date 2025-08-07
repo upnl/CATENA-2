@@ -131,10 +131,10 @@ GameObject:
   - component: {fileID: 195564359}
   - component: {fileID: 195564358}
   - component: {fileID: 195564357}
-  - component: {fileID: 195564363}
   - component: {fileID: 195564354}
   - component: {fileID: 195564362}
   - component: {fileID: 195564361}
+  - component: {fileID: 195564363}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -291,6 +291,7 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0}
   boxSize: {x: 0, y: 0, z: 0}
   showGizmos: 1
+  hitDetectTag: Player
 --- !u!114 &195564363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,22 +304,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c078ed96f92a41aa9557818c32a8c553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feetPosition: {fileID: 315927666}
-  landingDetectDistance: 0.5
+  feetPosition: {fileID: 658738139}
+  landingDetectDistance: 0.2
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   movementInput: {x: 0, y: 0}
   movementSpeed: 5
   bodyRotateSpeed: 15
-  dodgeDash: 5
+  dodgeDash: 0
   attackContextSO: {fileID: 11400000, guid: e4fa9cbd4db53ee4b9d70c8e630b0539, type: 2}
   cameraTransform: {fileID: 1310341783}
   isControllable: 0
   disappearTimer: 0
   canAttack: 0
-  normalAttackDashes:
-  - 0
+  normalAttackDashes: []
 --- !u!1 &254882373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,7 +1421,7 @@ GameObject:
   - component: {fileID: 628594639}
   - component: {fileID: 628594640}
   - component: {fileID: 628594641}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1517,9 +1517,12 @@ MonoBehaviour:
   bodyRotateSpeed: 0
   dodgeDash: 0
   attackContextSO: {fileID: 0}
+  playerTransform: {fileID: 0}
   normalAttackDashes:
   - 1
   - 1
+  detectDistance: 0
+  mp: 0
 --- !u!1 &658738138
 GameObject:
   m_ObjectHideFlags: 0

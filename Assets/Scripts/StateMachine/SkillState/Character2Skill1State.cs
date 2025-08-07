@@ -96,22 +96,27 @@ public class Character2Skill1State : EntitySkillState
             case InputActionPhase.Canceled:
                 switch (_chargingTime)
                 {
-                    case < 1.0f:
+                    //TODO : Change this Fucking hardcoded values to something more dynamic
+                    case < 1.5f:
                         stateMachine.PlayAnimation("Skill1-1");
-                        Debug.Log("Skill1-1 performed");
-                        break;
-                    case < 2.0f :
-                        stateMachine.PlayAnimation("Skill1-2");
-                        Debug.Log("Skill1-2 performed");
+                        _rigidbody.AddForce(_playerController.LookDirection * _playerController.normalAttackDashes[0], ForceMode.Impulse);
+                        // Debug.Log("Skill1-1 performed");
                         break;
                     case < 3.0f :
+                        stateMachine.PlayAnimation("Skill1-2");
+                        _rigidbody.AddForce(_playerController.LookDirection * _playerController.normalAttackDashes[0] * 2f, ForceMode.Impulse);
+                        // Debug.Log("Skill1-2 performed");
+                        break;
+                    case > 3.0f :
                         stateMachine.PlayAnimation("Skill1-3");
-                        Debug.Log("Skill1-3 performed");
+                        _rigidbody.AddForce(_playerController.LookDirection * _playerController.normalAttackDashes[0] * 3.5f, ForceMode.Impulse);
+                        // Debug.Log("Skill1-3 performed");
                         break;
                     default:
                         stateMachine.ChangeState(stateMachine.EntityIdleState);
-                        break;
+                        break; 
                 }
+                _playerController.RemoveActionTrigger(ActionTriggerType.Skill, OnCharging);
                 break;
             default:
                 break;

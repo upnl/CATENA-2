@@ -3,7 +3,7 @@ using UnityEngine;
 using StateMachine;
 using UnityEngine.InputSystem;
 
-public class CharacterSkill1State : EntitySkillState
+public class Character1Skill1State : EntitySkillState
 {
     private Rigidbody _rigidbody;
     private PlayerController _playerController;
@@ -13,7 +13,7 @@ public class CharacterSkill1State : EntitySkillState
     private bool _isMoving;
     private Vector3 _dashDir;
     
-    public CharacterSkill1State(EntityStateMachine entityStateMachine) : base(entityStateMachine)
+    public Character1Skill1State(EntityStateMachine entityStateMachine) : base(entityStateMachine)
     {
         _rigidbody = stateMachine.EntityController.GetComponent<Rigidbody>();
         _playerController = stateMachine.EntityController as PlayerController;

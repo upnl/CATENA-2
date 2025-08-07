@@ -22,6 +22,11 @@ public class EntityController : MonoBehaviour
     
     public Vector2 movementInput = Vector2.zero;
 
+    public float hp;
+    public float mp;
+    
+    public float maxHp, maxMp;
+
     public Animator Animator { get; private set; }
 
     /// <summary>
@@ -92,12 +97,28 @@ public class EntityController : MonoBehaviour
         StateMachine.PhysicsUpdate();
     }
     
-    public void Hit(AttackContext ctx)
+    public virtual bool Hit(AttackContext ctx)
     {
         AttackContext = ctx;
+
+        if (StateMachine.CurrentState is EntityDodgeState)
+        {
+            if (!ctx.isIgnoringDodge) return false;
+        }
         
         if (ctx.knockBack.y == 0) PublishActionTrigger(ActionTriggerType.Hit, new ActionTriggerContext{ AttackContext = ctx });
         else PublishActionTrigger(ActionTriggerType.AirHit, new ActionTriggerContext{ AttackContext = ctx });
+
+        hp -= CalculateDamage(ctx.damage);
+        
+        DamageObjectSpawner.Instance.SpawnDamageObject((int) ctx.damage, transform.position + Vector3.up);
+
+        return true;
+    }
+
+    public virtual float CalculateDamage(float damage)
+    {
+        return damage;
     }
 
     public bool LandingDetect()

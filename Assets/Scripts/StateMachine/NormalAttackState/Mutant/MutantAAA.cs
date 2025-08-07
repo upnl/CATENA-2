@@ -25,11 +25,13 @@ public class MutantAAA : NormalAttackState
         
         ParentStateMachine.PlayAnimation("AAA");
         
+        _rigidbody.AddForce(EntityController.LookDirection * AttackContext.floatVariables[0], ForceMode.Impulse);
+        
         CanAttack = false;
         
         var entityTransform = EntityController.transform;
         var playerPos = _enemyController.playerTransform.position;
-        playerPos.y = 0;
+        playerPos.y = EntityController.transform.position.y;
         entityTransform.LookAt(playerPos);
         
         EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);

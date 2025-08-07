@@ -65,7 +65,7 @@ public class MutantSkill1State : EntitySkillState
     {
         var entityTransform = stateMachine.EntityController.transform;
         var playerPos = _enemyController.playerTransform.position;
-        playerPos.y = 0;
+        playerPos.y = entityTransform.position.y;
         entityTransform.LookAt(playerPos);
     }
 
