@@ -5,11 +5,18 @@ using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
 {
+    [Header("Current Character")]
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Slider mpSlider;
     [SerializeField] private Image currentIconImage;
     [SerializeField] private Image skill1IconImage;
     [SerializeField] private Image skill2IconImage;
+
+    [Header("Ready Characters")]
+    [SerializeField] private Image ready1IconImage;
+    [SerializeField] private Slider ready1HpSlider;
+    [SerializeField] private Image ready2IconImage;
+    [SerializeField] private Slider ready2HpSlider;
 
     private void Start()
     {
@@ -92,4 +99,16 @@ public class InGameUI : MonoBehaviour
         StartCoroutine(SkillCooldownCoroutine(skill2IconImage, cooldown));
     }
     #pragma warning restore CS0162  // TODO: remove this later
+    
+    public void SetReady1Character(Sprite icon, float hp)
+    {
+        ready1IconImage.sprite = icon;
+        ready1HpSlider.value = hp;
+    }
+
+    public void SetReady2Character(Sprite icon, float hp)
+    {
+        ready2IconImage.sprite = icon;
+        ready2HpSlider.value = hp;
+    }
 }
