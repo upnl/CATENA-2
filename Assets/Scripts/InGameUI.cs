@@ -24,6 +24,14 @@ public class InGameUI : MonoBehaviour
     [SerializeField] private Image ready2IconImage;
     [SerializeField] private Image ready2HpImage;
     [SerializeField] private Slider ready2HpSlider;
+
+    public Image ready1BarImage;
+    public Image ready2BarImage;
+
+    public Sprite[] characterIcons;
+    public Sprite[] currentCharacterIcons;
+    public Sprite[] currentSkillIcons;
+    public Sprite[] barSprites;
     
     private PartyController _partyController;
 
@@ -43,6 +51,15 @@ public class InGameUI : MonoBehaviour
                                _partyController.GetCurrentCharacterController(0).maxHp;
         ready2HpSlider.value = _partyController.GetCurrentCharacterController(1).hp /
                                _partyController.GetCurrentCharacterController(1).maxHp;
+
+        ready1IconImage.sprite = characterIcons[_partyController.GetNumCharacter(0)];
+        ready2IconImage.sprite = characterIcons[_partyController.GetNumCharacter(1)];
+
+        currentIconImage.sprite = currentCharacterIcons[_partyController.GetCurrentCharacterIndex()];
+        skill1IconImage.sprite = currentSkillIcons[_partyController.GetCurrentCharacterIndex()];
+        
+        ready1BarImage.sprite = barSprites[_partyController.GetNumCharacter(0)];
+        ready2BarImage.sprite = barSprites[_partyController.GetNumCharacter(1)];
     }
 
     public void OnReset()

@@ -51,8 +51,9 @@ public class EntityState : IState
     {
         if (context.SkillNum == 1 && context.InputActionPhase != InputActionPhase.Canceled)
         {
-            if (stateMachine.EntityController.mp >= context.AttackContext.mp) 
+            if (stateMachine.EntityController.mp >= 15) 
                 stateMachine.ChangeState(stateMachine.EntitySkill1State);
+            stateMachine.EntityController.mp -= 15;
 
         }
     }

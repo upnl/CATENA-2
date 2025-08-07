@@ -56,6 +56,9 @@ public class PlayerController : EntityController
             Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0;
         }
+
+        mp += Time.deltaTime;
+        mp = Mathf.Clamp(mp, 0f, maxMp);
         
         if (!isControllable)
         {
