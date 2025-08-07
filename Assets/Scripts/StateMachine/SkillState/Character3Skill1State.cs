@@ -3,21 +3,24 @@ using UnityEngine;
 using StateMachine;
 using UnityEngine.InputSystem;
 
-public class Character1Skill1State : EntitySkillState
+public class Character3Skill1State : EntitySkillState
 {
     private Rigidbody _rigidbody;
     private PlayerController _playerController;
+    private Character3Controller _controller;
     
     private Transform _playerTransform;
 
     private bool _isMoving;
+    private float _chargingTime;
     private Vector3 _dashDir;
     
-    public Character1Skill1State(EntityStateMachine entityStateMachine) : base(entityStateMachine)
+    public Character3Skill1State(EntityStateMachine entityStateMachine) : base(entityStateMachine)
     {
         _rigidbody = stateMachine.EntityController.GetComponent<Rigidbody>();
         _playerController = stateMachine.EntityController as PlayerController;
-
+        _controller = _playerController as Character3Controller;
+        
         _playerTransform = _playerController.transform;
 
         AttackContext = _playerController.attackContextSO.contexts[5];
@@ -28,15 +31,23 @@ public class Character1Skill1State : EntitySkillState
         base.Enter();
         
         stateMachine.PlayAnimation("Skill1");
-        
+        _chargingTime = 0f;
         AttackContext = _playerController.attackContextSO.contexts[5];
+
+        _controller.onCollisionEvent += OnCollision;
         
         _playerController.AddActionTrigger(ActionTriggerType.MotionEvent, OnMotionEvent);
+    }
+
+    private void OnCollision()
+    {
+        BoxDetector.Attack(AttackContext);
     }
 
     public override void Update()
     {
         base.Update();
+        _chargingTime += Time.deltaTime;
     }
 
     public override void PhysicsUpdate()
@@ -54,10 +65,10 @@ public class Character1Skill1State : EntitySkillState
     {
         base.Exit();
         
+        _controller.onCollisionEvent -= OnCollision;
         _playerController.RemoveActionTrigger(ActionTriggerType.MotionEvent, OnMotionEvent);
-        _playerController.RemoveActionTrigger(ActionTriggerType.Dodge, OnDodge);
     }
-
+    
     private void OnMotionEvent(ActionTriggerContext ctx)
     {
         switch (ctx.AttackActionCtxNum)
@@ -67,23 +78,10 @@ public class Character1Skill1State : EntitySkillState
                 _isMoving = true;
                 break;
             case 1:
-                _isMoving = false;
+                _rigidbody.AddForce(_dashDir * (AttackContext.floatVariables[1])* (AttackContext.floatVariables[2]), ForceMode.Impulse);
                 break;
             case 2:
-                _rigidbody.AddForce(_dashDir * (AttackContext.floatVariables[1]) + Vector3.up * (AttackContext.floatVariables[2]), ForceMode.Impulse);
-                break;
-            case 3:
                 _rigidbody.linearVelocity = Vector3.zero;
-                if (Physics.Raycast(_playerTransform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity,
-                        AttackContext.groundMask))
-                {
-                    _playerTransform.position = hit.point + Vector3.up * 0.2f;
-                    AttackContext = _playerController.attackContextSO.contexts[6];
-                    
-                    _playerController.AddActionTrigger(ActionTriggerType.Dodge, OnDodge);
-                }
-                break;
-            default:
                 break;
         }
     }
