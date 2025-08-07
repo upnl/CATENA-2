@@ -5432,7 +5432,7 @@ MonoBehaviour:
   hp: 80
   mp: 0
   maxHp: 80
-  maxMp: 30
+  maxMp: 15
   movementSpeed: 4
   bodyRotateSpeed: 15
   dodgeDash: 5
@@ -7119,7 +7119,7 @@ MonoBehaviour:
   hp: 150
   mp: 0
   maxHp: 150
-  maxMp: 50
+  maxMp: 30
   movementSpeed: 3
   bodyRotateSpeed: 15
   dodgeDash: 5
