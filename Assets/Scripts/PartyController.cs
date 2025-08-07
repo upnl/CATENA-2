@@ -97,9 +97,9 @@ public class PartyController : MonoBehaviour
 
             StartCoroutine(ChangeCharacterEffect());
             
-            if (tagEffect != null) Instantiate(tagEffect, currentPos, Quaternion.identity);
-            
             onCharacterChange.Invoke();
+            
+            if (tagEffect != null) Instantiate(tagEffect, playerInputProcessors[_currentCharacterIndex].transform.position, Quaternion.identity);
         }
     }
 
