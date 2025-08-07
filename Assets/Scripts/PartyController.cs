@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class PartyController : MonoBehaviour
 {
+    [SerializeField] private GameObject tagEffect; 
+    
     public PlayerInputProcessor[] playerInputProcessors;
     
     public CinemachineCamera cinemachineCamera;
@@ -94,6 +96,8 @@ public class PartyController : MonoBehaviour
             cinemachineCamera.Target.LookAtTarget = playerInputProcessors[_currentCharacterIndex].transform;
 
             StartCoroutine(ChangeCharacterEffect());
+            
+            if (tagEffect != null) Instantiate(tagEffect, currentPos, Quaternion.identity);
             
             onCharacterChange.Invoke();
         }
