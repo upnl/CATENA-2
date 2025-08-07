@@ -3,35 +3,35 @@ using StateMachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Character2A : NormalAttackState
+public class Character2AAB : NormalAttackState
 {
-    private Character2AA _aaState;
-    private Character2AB _abState;
-    
-    
+    // 실제로는 Animation 의 현재 상황에 따라서 공격 가능 판단해야함
+    private float _attackTimer;
+    private float _motionTimer;
+
+    private bool _move;
+
     private Rigidbody _rigidbody;
-    private PlayerController _playerController;
     
-    public Character2A(
+    private PlayerController _playerController;
+    public Character2AAB(
         EntityController entityController, 
-        NormalAttackStateMachine normalAttackStateMachine,
-        EntityStateMachine parentStateMachine)
+        NormalAttackStateMachine normalAttackStateMachine, 
+        EntityStateMachine parentStateMachine) 
         : base(entityController, normalAttackStateMachine, parentStateMachine)
     {
-        _aaState = new Character2AA(entityController, normalAttackStateMachine, parentStateMachine);
-        _abState = new Character2AB(entityController, normalAttackStateMachine, parentStateMachine);
-        
         _rigidbody = EntityController.GetComponent<Rigidbody>();
+        
         _playerController = EntityController as PlayerController;
-
-        AttackContext = _playerController.attackContextSO.contexts[0];
+        
+        AttackContext = _playerController.attackContextSO.contexts[3];
     }
 
     public override void Enter()
     {
         base.Enter();
         
-        ParentStateMachine.PlayAnimation("A");
+        ParentStateMachine.PlayAnimation("AAB");
         
         CanAttack = false;
         
@@ -40,9 +40,6 @@ public class Character2A : NormalAttackState
         
         EntityController.AddActionTrigger(ActionTriggerType.Hit, OnHit);
         EntityController.AddActionTrigger(ActionTriggerType.AirHit, OnAirHit);
-        
-        EntityController.AddActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
-        EntityController.AddActionTrigger(ActionTriggerType.HeavyAttack, OnHeavyAttack);
         
         EntityController.AddActionTrigger(ActionTriggerType.MotionEvent, OnAttackAction);
     }
@@ -55,6 +52,12 @@ public class Character2A : NormalAttackState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        if (_move)
+        {
+            _rigidbody.MovePosition(EntityController.transform.position + 
+                                    EntityController.transform.forward * (_playerController.normalAttackDashes[1] * Time.fixedDeltaTime));
+        }
     }
 
     public override void Exit()
@@ -64,34 +67,26 @@ public class Character2A : NormalAttackState
         EntityController.RemoveActionTrigger(ActionTriggerType.Hit, OnHit);
         EntityController.RemoveActionTrigger(ActionTriggerType.AirHit, OnAirHit);
         
-        EntityController.RemoveActionTrigger(ActionTriggerType.LightAttack, OnLightAttack);
-        EntityController.RemoveActionTrigger(ActionTriggerType.HeavyAttack, OnHeavyAttack);
-        
         EntityController.RemoveActionTrigger(ActionTriggerType.MotionEvent, OnAttackAction);
     }
 
     private void OnLightAttack(ActionTriggerContext ctx)
     {
-        if (!CanAttack) return;
-        
         if (ctx.InputActionPhase == InputActionPhase.Started)
         {
-            NormalAttackStateMachine.ChangeState(_aaState);
-        }
-    }
-
-    private void OnHeavyAttack(ActionTriggerContext ctx)
-    {
-        if (!CanAttack) return;
-        
-        if (ctx.InputActionPhase == InputActionPhase.Started)
-        {
-            NormalAttackStateMachine.ChangeState(_abState);
+            
         }
     }
     
     private void OnAttackAction(ActionTriggerContext ctx)
     {
-        _rigidbody.AddForce(EntityController.LookDirection * _playerController.normalAttackDashes[0], ForceMode.Impulse);
+        if (ctx.AttackActionCtxNum == 0)
+        {
+            _move = true;
+        }
+        else
+        {
+            _move = false;
+        }
     }
 }

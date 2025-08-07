@@ -3,35 +3,33 @@ using StateMachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Character2A : NormalAttackState
+public class Character2AA : NormalAttackState
 {
-    private Character2AA _aaState;
-    private Character2AB _abState;
-    
+    // private Character1AAA _aaaState;
+    private Character2AAB _aabState;
     
     private Rigidbody _rigidbody;
     private PlayerController _playerController;
-    
-    public Character2A(
+    public Character2AA(
         EntityController entityController, 
-        NormalAttackStateMachine normalAttackStateMachine,
-        EntityStateMachine parentStateMachine)
+        NormalAttackStateMachine normalAttackStateMachine, 
+        EntityStateMachine parentStateMachine) 
         : base(entityController, normalAttackStateMachine, parentStateMachine)
     {
-        _aaState = new Character2AA(entityController, normalAttackStateMachine, parentStateMachine);
-        _abState = new Character2AB(entityController, normalAttackStateMachine, parentStateMachine);
+        // _aaaState = new Character1AAA(entityController, normalAttackStateMachine, parentStateMachine);
+        _aabState = new Character2AAB(entityController, normalAttackStateMachine, parentStateMachine);
         
         _rigidbody = EntityController.GetComponent<Rigidbody>();
         _playerController = EntityController as PlayerController;
-
-        AttackContext = _playerController.attackContextSO.contexts[0];
+        
+        AttackContext = _playerController.attackContextSO.contexts[1];
     }
 
     public override void Enter()
     {
         base.Enter();
         
-        ParentStateMachine.PlayAnimation("A");
+        ParentStateMachine.PlayAnimation("AA");
         
         CanAttack = false;
         
@@ -76,7 +74,7 @@ public class Character2A : NormalAttackState
         
         if (ctx.InputActionPhase == InputActionPhase.Started)
         {
-            NormalAttackStateMachine.ChangeState(_aaState);
+            // NormalAttackStateMachine.ChangeState(_aaaState);
         }
     }
 
@@ -86,7 +84,7 @@ public class Character2A : NormalAttackState
         
         if (ctx.InputActionPhase == InputActionPhase.Started)
         {
-            NormalAttackStateMachine.ChangeState(_abState);
+            NormalAttackStateMachine.ChangeState(_aabState);
         }
     }
     
