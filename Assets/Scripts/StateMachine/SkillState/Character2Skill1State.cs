@@ -28,7 +28,7 @@ public class Character2Skill1State : EntitySkillState
     {
         base.Enter();
         
-        ((Character2Controller) stateMachine.EntityController).SetDamageReductionRate(0.8f);
+        ((Character2Controller) stateMachine.EntityController).SetDamageReductionRate(0.3f);
         
         stateMachine.PlayAnimation("Skill1");
         _chargingTime = 0f;
@@ -103,16 +103,22 @@ public class Character2Skill1State : EntitySkillState
                     //TODO : Change this Fucking hardcoded values to something more dynamic
                     case < 1.5f:
                         stateMachine.PlayAnimation("Skill1-1");
+
+                        AttackContext.damage *= 1f;
                         _rigidbody.AddForce(_playerController.LookDirection * _playerController.normalAttackDashes[0], ForceMode.Impulse);
                         // Debug.Log("Skill1-1 performed");
                         break;
                     case < 3.0f :
                         stateMachine.PlayAnimation("Skill1-2");
+                        
+                        AttackContext.damage *= 2f;
                         _rigidbody.AddForce(_playerController.LookDirection * _playerController.normalAttackDashes[0] * 2f, ForceMode.Impulse);
                         // Debug.Log("Skill1-2 performed");
                         break;
                     case > 3.0f :
                         stateMachine.PlayAnimation("Skill1-3");
+                        
+                        AttackContext.damage *= 2.5f;
                         _rigidbody.AddForce(_playerController.LookDirection * _playerController.normalAttackDashes[0] * 3.5f, ForceMode.Impulse);
                         // Debug.Log("Skill1-3 performed");
                         break;
