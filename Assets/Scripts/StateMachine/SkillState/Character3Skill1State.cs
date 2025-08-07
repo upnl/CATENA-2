@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using PlayerControl;
 using UnityEngine;
 using StateMachine;
-using UnityEditor.Searcher;
 using UnityEngine.InputSystem;
 
 public class Character3Skill1State : EntitySkillState
