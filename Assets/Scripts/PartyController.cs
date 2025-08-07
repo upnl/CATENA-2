@@ -59,6 +59,7 @@ public class PartyController : MonoBehaviour
     public void ComboUp()
     {
         comboCount++;
+        comboElapsed = 3f;
         inGameUI.ShowComboPopup(comboCount);
     }
 

@@ -82,7 +82,7 @@ public class AttackBoxDetector : MonoBehaviour
                     hitEffect = ctx.hitEffect;
                     var pos = result.ClosestPoint(transform.position);
                     
-                    _partyController.ComboUp();
+                    if (hitDetectTag.Equals("Player"))_partyController.ComboUp();
 
                     if (hitEffect != null) Instantiate(hitEffect, pos, Quaternion.identity);
                 }
