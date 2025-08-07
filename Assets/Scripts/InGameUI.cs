@@ -1,6 +1,6 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -32,6 +32,10 @@ public class InGameUI : MonoBehaviour
     public Sprite[] currentCharacterIcons;
     public Sprite[] currentSkillIcons;
     public Sprite[] barSprites;
+
+    [Header("Combo")]
+    [SerializeField] private GameObject comboPopup;
+    [SerializeField] private TMP_Text comboText;
     
     private PartyController _partyController;
 
@@ -39,7 +43,7 @@ public class InGameUI : MonoBehaviour
     {
         _partyController = FindObjectOfType<PartyController>();
     }
-    
+
     private void Update()
     {
         hpSlider.value = _partyController.GetCurrentCharacterController().hp /
@@ -132,5 +136,13 @@ public class InGameUI : MonoBehaviour
         ready2IconImage.sprite = icon;
         ready2HpImage.sprite = hpImage;
         ready2HpSlider.value = hpValue;
+    }
+    
+    public void ShowComboPopup(int comboCount)
+    {
+        Debug.LogWarning("Combo");
+        comboText.text = comboCount.ToString();
+        comboPopup.SetActive(false);
+        comboPopup.SetActive(true);
     }
 }
