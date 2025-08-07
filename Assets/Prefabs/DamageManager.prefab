@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageObjectPrefab: {fileID: 968034584677551715, guid: fdbdfb319c18d4d5a9d69a6c41316043, type: 3}
+  playerDamageColor: {r: 1, g: 0.24550551, b: 0, a: 1}
+  enemyDamageColor: {r: 1, g: 0.7469876, b: 0, a: 1}
