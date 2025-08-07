@@ -2,6 +2,7 @@
 using PlayerControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerInputProcessor : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class PlayerInputProcessor : MonoBehaviour
         _lightAttackAction = InputSystem.actions.FindAction("LightAttack");
         _heavyAttackAction = InputSystem.actions.FindAction("HeavyAttack");
         _dodgeAction = InputSystem.actions.FindAction("Dodge");
+        
+        InputSystem.actions.FindAction("Restart").
+            SubscribeAllPhases(_ => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));
 
         _skillActions = new InputAction[2];
         for (int i = 0; i < _skillActions.Length; i++)

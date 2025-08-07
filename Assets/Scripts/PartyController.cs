@@ -72,6 +72,25 @@ public class PartyController : MonoBehaviour
         return null;
     }
 
+    public int GetCurrentCharacterIndex()
+    {
+        return _currentCharacterIndex;
+    }
+    public int GetNumCharacter(int n)
+    {
+        int k = n;
+        
+        for (int i = 0; i < playerControllers.Length; i++)
+        {
+            if (i == _currentCharacterIndex) continue;
+            if (n == 0) return i;
+            n--;
+        }
+
+        return -1;
+    }
+
+
 
     private void OnChange(InputAction.CallbackContext context)
     {
@@ -97,9 +116,9 @@ public class PartyController : MonoBehaviour
 
             StartCoroutine(ChangeCharacterEffect());
             
-            if (tagEffect != null) Instantiate(tagEffect, currentPos, Quaternion.identity);
-            
             onCharacterChange.Invoke();
+            
+            if (tagEffect != null) Instantiate(tagEffect, playerInputProcessors[_currentCharacterIndex].transform.position, Quaternion.identity);
         }
     }
 

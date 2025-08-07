@@ -3,6 +3,7 @@ using PlayerControl;
 using StateMachine;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : EntityController
 {
@@ -52,10 +53,11 @@ public class PlayerController : EntityController
 
         if (hp < 0)
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            Time.timeScale = 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        mp += Time.deltaTime * 3f;
+        mp = Mathf.Clamp(mp, 0f, maxMp);
         
         if (!isControllable)
         {
