@@ -13,11 +13,10 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Gemini Code Review
-        uses: stefananzim/gemini-ai-code-review-action@v1
+        uses: google-gemini/ai-pr-reviewer@main # 구글 공식/검증된 실제 액션 주소로 변경
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         with:
-          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          model: "gemini-2.5-flash" 
+          # 사용하는 액션에 맞는 옵션 설정 (기본값으로 동작)
+          model: "gemini-2.5-flash"
