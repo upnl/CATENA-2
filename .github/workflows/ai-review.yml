@@ -1,4 +1,4 @@
-name: Gemini AI Code Review
+name: Gemini CLI Code Review
 
 on:
   pull_request:
@@ -13,10 +13,16 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: google-gemini/ai-pr-reviewer@main # 구글 공식/검증된 실제 액션 주소로 변경
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        uses: actions/checkout@v4
+
+      # 1. 구글 공식 Gemini CLI 액션 실행
+      - name: Run Gemini PR Review
+        id: gemini_agent
+        uses: google-github-actions/run-gemini-cli@v0.1.22
         with:
-          # 사용하는 액션에 맞는 옵션 설정 (기본값으로 동작)
-          model: "gemini-2.5-flash"
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          gemini_model: "gemini-2.5-flash" # 무료 쿼터가 넉넉한 고성능 모델
+          # 마켓플레이스 문서에 따른 PR 리뷰 자동화 프롬프트
+          prompt: "Please review this pull request. Provide constructive feedback on bugs, security, and performance. Output in Korean."
+          
